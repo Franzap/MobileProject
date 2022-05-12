@@ -1,0 +1,50 @@
+#curriculum{
+    display: flex;
+    overflow: hidden;
+    box-shadow: var(--secondario);
+    z-index: inherit;
+}
+
+#corpo{
+    display: flex;
+    flex-direction: column;
+    padding: 3em;
+    background-color: var(--secondario);
+    width: 70%;
+    align-items: center;
+}
+
+#esperienze_lavorative ul{
+    list-style-type: none;
+}
+
+
+.card{
+    border: blue 1px solid;
+    border-radius: 20px;
+    padding:0em 0em 0em 2em ;
+    margin-bottom: 3em;
+    background-color: var(--ternario); 
+    width: 900px;
+}
+
+.card_title{
+    
+    margin: 1em;
+}
+
+.card_content{
+    margin-right: 1em;
+}
+.card .card_content:last-child{
+    padding-bottom: 1em;
+}
+#informazioni_personali h3{
+    padding: 1em;
+    margin-right: 1em;
+    text-align: end;
+}
+
+
+
+

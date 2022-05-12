@@ -1,0 +1,142 @@
+#profilo{
+    background-color: var(--secondario);
+    color: var(--font);
+    padding:2em;
+    z-index: inherit;
+    overflow: hidden;
+    border-radius: 10px;
+    border: solid blue 1px;
+    background-color: lightblue;
+}
+#headingAnagrafica{
+    padding-bottom:1em !important;
+}
+#headingContatti{
+    padding-top:1em !important;
+}
+#profilo h1{
+    text-align: center;
+    padding: 0em;
+    margin: 0em;
+}
+#anagrafica{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 0em 4em;
+}
+
+#rigaInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+}
+
+#contatti{
+    padding-top: 1em;
+}
+
+#imgandname{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    border-right:black 1px solid;
+}
+img{
+    width: 200px;
+    height: 187px;
+    border: solid 2px blue;
+    border-radius:100%;
+    z-index: 2;
+}
+#foto_profilo{
+    position: relative;
+    border: solid 1px blue;
+    border-radius: 10px;
+    padding: 2em;
+}
+
+
+/*
+#foto_profilo:hover > #enlarge {
+    opacity: 100%;
+    transition-duration: 0.5s;
+    position: absolute;
+    z-index: 1;
+}
+
+#enlarge{
+    z-index:-2;
+    position: absolute;
+    bottom: 0;
+    right:0;
+    cursor: pointer;
+    color: black;
+}
+#enlarge:hover{
+    transform: scale(140%);
+    animation-duration: 0.3;
+}
+
+*/
+#profilo a{
+    color: var(--font);
+}
+
+.nome{
+    text-align: center;
+}
+#nome{
+    margin-top:1em;
+}
+.information{
+    display: flex;
+    padding: 0.5em 0.3em 0.3em 0em;
+    border-radius: 10px;
+    border: solid blue 1px;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+    margin: 1em;
+}
+.information:hover{
+    background-color: blue;
+    color: white;
+}
+.information:hover .google{
+    background-color: lightblue;
+    color: black;
+}
+.google{
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    z-index: 2;
+    position: absolute; 
+    top: -0.7em;
+    left:1em;
+    background-color: lightblue;
+    border-radius: 10px;
+    padding:5px 8px 5px 8px;
+}
+.icon{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.testo{
+    padding: 0em 1em 0em 1em;
+    width: 100%;
+    z-index: inherit;
+    overflow: hidden;
+}
+#contatti{
+    display: flex;
+    flex-direction: row;
+}
