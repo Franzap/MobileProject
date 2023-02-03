@@ -1,7 +1,0 @@
-{
-  "name": "LightWeight",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
