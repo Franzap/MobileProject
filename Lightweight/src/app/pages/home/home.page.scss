@@ -1,0 +1,104 @@
+
+.image{
+    position:fixed;
+    margin-top: 45px;
+    margin-left:25px;
+    border-radius:999em;   
+-moz-border-radius:999em; 
+-webkit-border-radius:999em;
+  -o-border-radius: 999em;   
+    
+}
+
+.title {
+margin-top : 30px;
+margin-left:100px;
+font-size: small;
+position:fixed;
+}
+
+.username {
+    margin-top : 50px;
+    margin-left: 100px;
+    font-size: medium;
+    position: fixed;
+}
+
+.notifications {
+    height: 22px;
+    width: 22px;
+    position:fixed;
+    margin-left: 250px;
+    margin-top: 40px;
+}
+
+.settings {
+    height: 22px;
+    width: 22px;
+    margin-left:280px;
+    position:fixed;
+    margin-top: 40px;
+}
+
+.orari {
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 30px;
+    
+    
+
+}
+.chiuso {
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 30px;
+}
+
+.abbonamento {
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 30px;
+    
+
+}
+.aperto {
+   text-align: center;
+    color:black;
+   
+    
+    
+}
+
+.scaduto {
+ 
+  color:black;
+  text-align: center;
+  
+    
+   
+}
+
+.schede {
+   margin-bottom: 20px;
+   margin-left: 90px;
+   font-size: small;
+}
+
+.div {
+    margin-top: 40px;
+}
+
+.titleChiuso {
+    margin-top: 5px;
+    text-align: center;
+    font-size: medium;
+}
+
+.titleAperto {
+    margin-top: 5px;
+    text-align: center;
+    font-size: medium;
+}

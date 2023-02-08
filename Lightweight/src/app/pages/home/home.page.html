@@ -1,0 +1,60 @@
+<ion-header>
+ 
+</ion-header>
+
+<ion-content color ="dark">
+
+  <div>
+    <img src = {{user.image}} width = "45" height="45" (click)="userNavigate()" class="image">
+    <img>
+  </div>
+    
+      
+ 
+
+<div>
+  <ion-label class="title">
+    Benvenuto
+    </ion-label>
+  </div>
+  
+    <ion-label  class ="username" id="username" position = "fixed" >
+     {{user.displayName}}
+      </ion-label> 
+
+      <ion-icon name ="notifications-outline" class="notifications" routerLink ="/notifications" ></ion-icon>
+      
+      <ion-icon name ="ellipsis-vertical-outline" class="settings" routerLink ="/settings"></ion-icon>
+
+  <ng-template #closed>
+    <ion-card class="chiuso" color="danger" >
+      <ion-card-title class="titleChiuso">Apre alle {{oraApertura }} : {{minutiApertura}}</ion-card-title>
+      <ion-card-content>
+      </ion-card-content>
+   </ion-card>
+  </ng-template>
+
+  <div *ngIf = "IsOpen === true ; else closed">
+    <ion-card class="orari" color="success" >
+      <ion-card-title class="titleAperto">Chiude alle {{oraChiusura }} : {{minutiChiusura}}</ion-card-title>
+      <ion-card-content id="orari" class="aperto" >
+      </ion-card-content>
+   </ion-card>
+  </div>
+    
+
+  
+
+  <ion-card  class="abbonamento" color="danger">
+    <ion-card-content id = "abbonamento" class="scaduto">
+    </ion-card-content> 
+    </ion-card>
+ 
+
+ <div class ="div">
+  <ion-label class="schede">
+    Schede allenamento
+    </ion-label>
+ </div>
+
+ 

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/profile" color="dark">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title color="dark">select avatar </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <ion-grid class="grid">
+    <ion-row>
+  <ion-item *ngFor="let item of items; trackBy:trackItems" lines="none" color="dark"class="item" id="Item"
+   (click)="selected(item.value)">
+    <img src = {{item.value}} width = "50" height="50" class="foto" id="avatar" ><img>
+   </ion-item>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+    
+      
+           
+         
+        
+    
+    
+   
+    
+    
+  
+  
+  
+
