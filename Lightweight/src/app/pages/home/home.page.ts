@@ -9,6 +9,7 @@ import { OrariService } from 'src/app/services/orari.service';
 import { Orari } from 'src/app/model/orari.model';
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { serverTimestamp, Timestamp } from 'firebase/firestore';
+import { userInfo } from 'os';
 
 
 @Component({
@@ -32,20 +33,22 @@ export class HomePage implements OnInit {
 
   
 
-  public abb:Abbonamento = {
-    descrizione : "ciao",
-    stato : true
-}
+  
+
   public user:User = {
     uid:"",
     email:"",
     displayName:"",
     abbonamento :{
-      descrizione:"",
-      stato:false
+      stato:false,
+      dataPrimoAbbonamento:null,
+      durata:0
     },
     image:""
   }
+
+  public abb:Abbonamento = this.user.abbonamento;
+  
 
   
  

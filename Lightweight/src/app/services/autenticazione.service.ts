@@ -3,7 +3,7 @@ import { User } from "../model/user.model";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {AngularFirestore, AngularFirestoreDocument , DocumentData} from "@angular/fire/compat/firestore"
 import { Router, NavigationExtras } from '@angular/router';
-import {doc, docData} from '@angular/fire/firestore';
+import {doc, docData, Timestamp} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { getApp } from '@firebase/app';
 import {Firestore, collection, addDoc,getFirestore, deleteDoc, updateDoc} from '@firebase/firestore';
@@ -73,8 +73,10 @@ export class AuthenticationService {
             email: user.email,
             displayName: display,
             abbonamento:{
-                descrizione: "",
-                stato:false
+                //descrizione: "",
+                stato:false,
+                dataPrimoAbbonamento:null,
+                durata:0
             },
             image:"assets/user.png"
         }

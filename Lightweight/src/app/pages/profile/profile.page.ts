@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Route } from '@angular/router';
 import { Router ,ActivatedRoute} from '@angular/router';
+import { Timestamp } from 'firebase/firestore';
 import { User } from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,16 +13,20 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfilePage implements OnInit {
   public newUsername:any="";
 
+  //public user : any;
   public user:User = {
     uid:"",
     email:"",
     displayName:"",
     abbonamento :{
-      descrizione:"",
-      stato:false
+      //descrizione:"",
+      stato:false,
+      dataPrimoAbbonamento:null,
+      durata:0
     },
     image:"assets/user.png"
   }
+  
   
   constructor( private router:Router, private route:ActivatedRoute, public usercommunication:UserService) { }
 

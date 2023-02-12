@@ -43,12 +43,38 @@
   </div>
     
 
+  <ng-template #scaduto>
+   
+    <ion-card class="scaduto" color="danger" >
+      <ion-card-title class="titleScaduto">Abbonamento Scaduto  </ion-card-title> 
+    </ion-card>
+     
+  
+  </ng-template>
+     
+
+
+
+  <ng-template #abbonato>
+    <div *ngIf ="user.abbonamento.durata >0 && user.abbonamento.stato==true ; else scaduto">
+      <ion-card class="abbonato" color="success" >
+      <ion-card-title class="siAbb">Abbonato </ion-card-title> 
+      </ion-card>
+    </div>
+  </ng-template>
+    
   
 
+    
+  
+
+<div *ngIf = "user.abbonamento.stato == false ; else abbonato">
   <ion-card  class="abbonamento" color="danger">
-    <ion-card-content id = "abbonamento" class="scaduto">
-    </ion-card-content> 
+    <ion-card-title class="noAbb">Nessun Abbonamento</ion-card-title>
+    
     </ion-card>
+</div>
+  
  
 
  <div class ="div">

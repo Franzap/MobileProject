@@ -14,7 +14,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SelectImagePage implements OnInit {
 
-  public user:User = {
+  public user : any;
+  /*public user:User = {
     uid:"",
     email:"",
     displayName:"",
@@ -24,6 +25,7 @@ export class SelectImagePage implements OnInit {
     },
     image:"assets/user.png"
   }
+  */
 
   //public send:string|null|undefined ="";
 

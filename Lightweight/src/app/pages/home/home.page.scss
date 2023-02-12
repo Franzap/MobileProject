@@ -62,7 +62,12 @@ position:fixed;
     margin-right: 20px;
     height: 30px;
     
-
+}
+.abbonato {
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 30px;
 }
 .aperto {
    text-align: center;
@@ -72,14 +77,7 @@ position:fixed;
     
 }
 
-.scaduto {
- 
-  color:black;
-  text-align: center;
-  
-    
-   
-}
+
 
 .schede {
    margin-bottom: 20px;
@@ -101,4 +99,27 @@ position:fixed;
     margin-top: 5px;
     text-align: center;
     font-size: medium;
+}
+
+.noAbb{
+    margin-top: 5px;
+    text-align: center;
+    font-size: medium;
+}
+.siAbb{
+    margin-top: 5px;
+    text-align: center;
+    font-size: medium;
+}
+.titleScaduto{
+    margin-top: 5px;
+    text-align: center;
+    font-size: medium;
+    
+}
+.scaduto{
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 30px;
 }
