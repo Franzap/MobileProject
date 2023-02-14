@@ -1,0 +1,66 @@
+.foto{
+   
+    border-radius:999em;   
+-moz-border-radius:999em; 
+-webkit-border-radius:999em;
+  -o-border-radius: 999em;   
+}
+.list{
+    
+    margin-top: 70px;
+    margin-left: 15px;
+    margin-right: 15px;
+    
+   
+}
+.inizio{
+    font-size: small;
+}
+.fine{
+    font-size: small;
+    margin-top: 10px;
+}
+.username{
+    font-size: medium;
+    
+    
+}
+.label{
+    margin-top: 5px;
+}
+.text{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.firstWarning{
+    margin-top:100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+
+}
+.firstSuccess{
+    margin-top:100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+.secondWarning{
+    margin-top:10px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+.secondSuccess{
+    margin-top:10px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+.icon{
+   position: fixed; 
+   margin-top: 65px;
+   z-index: 1;
+   margin-left: 250px;
+}

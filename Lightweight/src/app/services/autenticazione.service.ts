@@ -14,6 +14,7 @@ import { Abbonamento } from '../model/abbonamento.model';
   providedIn: 'root'
 })
 export class AuthenticationService {
+    
    public userData : any;
    constructor(
     public afs: AngularFirestore,
@@ -47,6 +48,7 @@ export class AuthenticationService {
                     }
                 };
                 this.router.navigate(['/tabs/home'],params);
+                
             }
            });
            // this.SetUserData(result.user,a);
@@ -76,7 +78,9 @@ export class AuthenticationService {
                 //descrizione: "",
                 stato:false,
                 dataPrimoAbbonamento:null,
-                durata:0
+                dataScadenza:null,
+                assicurazione:false,
+                certificato:false
             },
             image:"assets/user.png"
         }
@@ -141,7 +145,8 @@ SetSomething(some:any) {
     return someRef.set(someData, {
         merge: true
     })
-}
+} 
+
 
   }
 

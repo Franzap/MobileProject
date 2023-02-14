@@ -1,13 +1,52 @@
-<ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start" >
-        <ion-back-button defaultHref="/tabs/home">
-        </ion-back-button>
-      </ion-buttons>
-      <ion-title>Abbonamento</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+
   
-  <ion-content>
+  <ion-content color="dark">
+    
+    <p class="text">Abbonamento</p>
+
+    <ng-template #noAbbonamento>
+      <p></p>
+    </ng-template>
   
+    <img src="assets/iconWhite.png" class="icon" width = "25" height="25">
+    <div *ngIf="user.abbonamento.stato===true;else  noAbbonamento"> <ion-list [inset]="true"  class="list" >
+      <ion-list-header color ="secondary" class="username">{{user.displayName}} </ion-list-header>
+      <ion-item color="secondary">
+        <ion-thumbnail slot="start">
+          <img src= {{user.image}} width = "45" height="45" class="foto" >
+        </ion-thumbnail>
+        
+        <ion-label class="label">
+          <p class="inizio"> Abbonato dal: {{startDate  | date: 'dd/MM/yyyy'}}</p>
+          <p class="fine">Scadenza: {{endDate  | date: 'dd/MM/yyyy'}}</p>
+          
+        </ion-label>
+
+      </ion-item>
+    </ion-list>
+
+    <ng-template #noCertificato>
+      <ion-card color="warning" class="firstWarning">
+        Consegnare certificato medico
+      </ion-card>
+
+    </ng-template>
+
+    <ion-card *ngIf = "user.abbonamento.certificato === true ; else noCertificato"color="success"class="firstSuccess">
+      Certificato medico consegnato
+    </ion-card>
+
+    <ng-template #noAssicurazione>
+      <ion-card class="secondWarning" color="warning">
+        Consegnare assicurazione
+      </ion-card>
+
+    </ng-template>
+
+    <ion-card *ngIf= "user.abbonamento.assicurazione === true ; else noAssicurazione" color="success" class="secondSuccess">
+      Assicurazione consegnata
+    </ion-card>
+  </div>
+    
   </ion-content>

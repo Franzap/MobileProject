@@ -7,7 +7,9 @@ export interface Abbonamento {
    // descrizione : string;
     stato : boolean;
     dataPrimoAbbonamento: Timestamp|null;
-    durata: number;
+    dataScadenza: Timestamp|null;
+    certificato:boolean;
+    assicurazione:boolean;
     /*
     costo:number;
     durata:number;

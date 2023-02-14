@@ -22,7 +22,9 @@ export class ProfilePage implements OnInit {
       //descrizione:"",
       stato:false,
       dataPrimoAbbonamento:null,
-      durata:0
+      dataScadenza:null,
+      assicurazione:false,
+      certificato:false
     },
     image:"assets/user.png"
   }

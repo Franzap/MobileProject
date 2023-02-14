@@ -19,6 +19,7 @@ import { userInfo } from 'os';
 })
 export class HomePage implements OnInit {
   public IsOpen:boolean = false;
+  public giorniAbbonamentoRimasti:number=0;
  
   
   
@@ -42,7 +43,9 @@ export class HomePage implements OnInit {
     abbonamento :{
       stato:false,
       dataPrimoAbbonamento:null,
-      durata:0
+      dataScadenza:null,
+      assicurazione:false,
+      certificato:false
     },
     image:""
   }
@@ -56,17 +59,20 @@ export class HomePage implements OnInit {
       public usercommunication:UserService, public timecommunication:OrariService) { }
 
    ngOnInit() {
-    this.returnUsername();
+    this.returnUser();
     this.isOpen();
+    
+    
     //window.alert(this.user.image);
     //window.alert(this.user.displayName);
     
 
   }
-  returnUsername() {
+  returnUser() {
     const uid =this.route.snapshot.queryParamMap.get('uid');
     this.usercommunication.getUserbyId(uid).subscribe(res =>{
     this.user = res;
+    this.isAbbonato();
     /*const d = document.getElementById("username");
     if(d!=null){
      d.innerHTML = this.user.displayName; 
@@ -123,6 +129,42 @@ this.router.navigate(['/profile'],params);
 
 //this.router.navigate(['/profile']);
 }
+
+isAbbonato(){
+  var scadenza = this.user.abbonamento.dataScadenza;
+  if(scadenza!=null){
+    var dataScadenza = scadenza.toDate();
+    var todayDate = new Date();
+    var utc1 = Date.UTC(dataScadenza.getFullYear(), dataScadenza.getMonth(), dataScadenza.getDate());
+    var utc2 = Date.UTC(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+    const diffInDays = Math.floor((utc1-utc2) / (1000 * 60 * 60 * 24));
+    if(diffInDays > 0){
+      this.giorniAbbonamentoRimasti = diffInDays;
+     
+     
+    }else{
+      this.giorniAbbonamentoRimasti=0;
+    }
+   
+}
+}
+
+tabsNavigate(){
+  
+  const params : NavigationExtras = {
+    queryParams: {
+      uid:this.user.uid,
+    email:this.user.email,
+    displayName:this.user.displayName,
+    abbonamento :this.user.abbonamento,
+    image:this.user.image
+    }
+};
+this.router.navigate(['/abbonamento'],params);
+
+
+}
+
 
 
 }
