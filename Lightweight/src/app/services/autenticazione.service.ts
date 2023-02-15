@@ -82,7 +82,8 @@ export class AuthenticationService {
                 assicurazione:false,
                 certificato:false
             },
-            image:"assets/user.png"
+            image:"assets/user.png",
+            schede:[]
         }
         return userRef.set(userData, {
             merge: true

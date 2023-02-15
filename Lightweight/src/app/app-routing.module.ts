@@ -54,6 +54,10 @@ const routes: Routes = [
   {
     path: 'select-image',
     loadChildren: () => import('./pages/select-image/select-image.module').then( m => m.SelectImagePageModule)
+  },
+  {
+    path: 'creazione-scheda',
+    loadChildren: () => import('./pages/creazione-scheda/creazione-scheda.module').then( m => m.CreazioneSchedaPageModule)
   }
 ];
 

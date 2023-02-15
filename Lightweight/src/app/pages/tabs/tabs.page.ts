@@ -17,19 +17,8 @@ import { ToastController } from '@ionic/angular';
 export class TabsPage implements OnInit {
 
 public uid:string="";
-  public user:User = {
-    uid:"",
-    email:"",
-    displayName:"",
-    abbonamento :{
-      stato:false,
-      dataPrimoAbbonamento:null,
-      dataScadenza:null,
-      certificato:false,
-      assicurazione:false
-    },
-    image:""
-  }
+public user:User= this.usercommunication.createEmptyUser();
+ 
 
   constructor(private router: Router, private route: ActivatedRoute ,
     public usercommunication:UserService,private toastController: ToastController) { }

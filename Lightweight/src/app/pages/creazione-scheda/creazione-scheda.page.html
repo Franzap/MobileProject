@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" >
+      <ion-icon name="chevron-back-outline"  (click)="presentActionSheet()" color="dark" class="freccia" >
+
+      </ion-icon> 
+      
+    </ion-buttons>
+    <ion-title color="dark">Nuova Scheda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+<p class="p">
+  Inserisci nome scheda
+</p>
+  
+  <ion-item color="medium"class="nome">
+    
+   
+    <ion-input placeholder="example"></ion-input>
+  </ion-item>
+
+  <p class="p">Seleziona tipologia scheda</p>
+  
+   
+    
+      <ion-item color="medium">
+        <ion-select color="medium"
+          
+          placeholder="Select type"
+          (ionChange)="handleChange($event)"
+          
+        >
+          <ion-select-option *ngFor="let type of types" [value]="type" color="medium">{{ type.name }}</ion-select-option>
+        </ion-select>
+        <img *ngIf= "currentType.img!='';else noImg" src={{currentType.img}} width = "35" height="35" class="image">
+      <ng-template #noImg></ng-template>
+      </ion-item>
+
+      <p class="p">
+        Seleziona esercizi
+      </p>
+
+      <ion-item color="medium">
+        <ion-select color="medium"
+          
+          placeholder="Select exercises"
+          (ionChange)="HandleChange($event)"
+          [multiple]="true"
+          
+        >
+          <ion-select-option *ngFor="let exercise of esercizi" [value]="exercise" color="medium">{{ exercise.nome }}</ion-select-option>
+        </ion-select>
+      
+      
+      </ion-item>
+     <div *ngIf="currentEsercizi.length>0;">
+      <p class="p">
+        Esercizi selezionati
+      </p>
+      
+      
+        <ion-grid class ="grid">
+          <ion-card *ngFor="let exercise of currentEsercizi"  color="medium" class="card">
+            <ion-card-header>
+              <ion-card-title class="title">{{ exercise.nome }}</ion-card-title>
+            </ion-card-header>
+              <img src= {{exercise.immagine}} class="imageEx" width = "65" height="30"(click)="setOpen(true , exercise)" >
+             
+              <ion-modal [isOpen]="isModalOpen">
+                <ng-template>
+                  
+                  <ion-content color="dark">
+                    <p class="Title">{{currentTitle}}</p>
+                    
+                      <ion-icon name="close-circle" (click)="setOpen(false , exercise)" color="primary" class="close"
+                      ></ion-icon>
+                    
+                    
+                      
+
+                      
+                    
+                    <img src= {{currentImage}} class="currentImage" width="275"  height="120" >
+                    <p class="currentDescrizione"> {{currentDescrizione}}</p>
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
+
+              <p class="p">N°serie {{ exercise.nSerie}} </p>
+                
+              <ion-item  lines="none" color="medium" class="Item">
+                <ion-range (ionChange)="onIonChange($event , exercise)" max="10" class="Range">
+                   </ion-range>
+                  </ion-item>
+           <p class="p"> N°ripetizioni  {{ exercise.nReps }}</p>
+
+           <ion-item  lines="none" color="medium" class="Item2">
+            <ion-range (ionChange)="OnIonChange($event , exercise)" max="100" class="Range">
+               </ion-range>
+              </ion-item>
+
+           </ion-card>
+        </ion-grid>
+         
+        
+        
+       
+      
+      
+      
+     </div>
+      
+    
+    
+  
+  
+  
+
+</ion-content>

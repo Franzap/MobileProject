@@ -18,23 +18,13 @@ import { serverTimestamp, Timestamp } from 'firebase/firestore';
 })
 export class AbbonamentoPage implements OnInit {
 //public uid:string="";
+public isActive:boolean=false;
 public startDate:Date=new Date();
 public Start:string="";
 public endDate:Date=new Date();
 public End:string= "";
-public user:User = {
-  uid:"",
-  email:"",
-  displayName:"",
-  abbonamento :{
-    stato:false,
-    dataPrimoAbbonamento:null,
-    dataScadenza:null,
-    assicurazione:false,
-    certificato:false
-  },
-  image:""
-}
+public user:User= this.usercommunication.createEmptyUser();
+
   constructor(public route:ActivatedRoute, public usercommunication:UserService) { }
 
   ngOnInit() {this.start();
@@ -47,21 +37,17 @@ public user:User = {
       this.user = res;
       if(this.user.abbonamento.dataPrimoAbbonamento!=null)
       {this.startDate=this.user.abbonamento.dataPrimoAbbonamento.toDate();
-       
-        
-     
-        
       }
       if(this.user.abbonamento.dataScadenza!=null)
       {this.endDate=this.user.abbonamento.dataScadenza.toDate();
-        
+        if(this.user.abbonamento.dataScadenza.toDate()> new Date()){
+          this.isActive=true;
+        }else{
+          this.isActive=false;
+        }
       }
      });
     }
-   /* if(uid!=null){
-      this.uid=uid;
-     // window.alert(uid);
-    }
-  }*/
+  
 
 }

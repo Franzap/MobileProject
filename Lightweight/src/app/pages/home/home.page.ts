@@ -10,6 +10,10 @@ import { Orari } from 'src/app/model/orari.model';
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { serverTimestamp, Timestamp } from 'firebase/firestore';
 import { userInfo } from 'os';
+import { Esercizio } from 'src/app/model/esercizio.model';
+import { EserciziService } from 'src/app/services/esercizi.service';
+import { ActionSheetController } from '@ionic/angular';
+
 
 
 @Component({
@@ -21,6 +25,7 @@ export class HomePage implements OnInit {
   public IsOpen:boolean = false;
   public giorniAbbonamentoRimasti:number=0;
  
+  public esercizi:Esercizio[] = [];
   
   
   public orari:Orari={
@@ -32,39 +37,16 @@ export class HomePage implements OnInit {
   public oraChiusura : number = 0;
   public minutiChiusura : string = "";
 
-  
+  public user : User = this.usercommunication.createEmptyUser();
 
-  
-
-  public user:User = {
-    uid:"",
-    email:"",
-    displayName:"",
-    abbonamento :{
-      stato:false,
-      dataPrimoAbbonamento:null,
-      dataScadenza:null,
-      assicurazione:false,
-      certificato:false
-    },
-    image:""
-  }
-
-  public abb:Abbonamento = this.user.abbonamento;
-  
-
-  
- 
   constructor( private router: Router, private route: ActivatedRoute ,
-      public usercommunication:UserService, public timecommunication:OrariService) { }
+      public usercommunication:UserService, public timecommunication:OrariService,
+      public exercisecommunication:EserciziService,private actionSheetCtrl: ActionSheetController) { }
 
    ngOnInit() {
     this.returnUser();
     this.isOpen();
     
-    
-    //window.alert(this.user.image);
-    //window.alert(this.user.displayName);
     
 
   }
@@ -73,11 +55,7 @@ export class HomePage implements OnInit {
     this.usercommunication.getUserbyId(uid).subscribe(res =>{
     this.user = res;
     this.isAbbonato();
-    /*const d = document.getElementById("username");
-    if(d!=null){
-     d.innerHTML = this.user.displayName; 
-     }
-     */
+   
    });
   }
   
@@ -127,7 +105,7 @@ userNavigate(){
 };
 this.router.navigate(['/profile'],params);
 
-//this.router.navigate(['/profile']);
+
 }
 
 isAbbonato(){
@@ -165,6 +143,40 @@ this.router.navigate(['/abbonamento'],params);
 
 }
 
+/*provaEsercizi() { 
+ this.exercisecommunication.getAllExercises().subscribe(res =>{
+  this.esercizi=res;
+  window.alert(this.esercizi[0].descrizione + this.esercizi[1].descrizione)
+ });
 
+}*/
+async presentActionSheet() {
+  const actionSheet = await this.actionSheetCtrl.create({
+    header: 'Vuoi creare una nuova scheda?',
+    cssClass: 'my-custom-class',
+    buttons: [
+     
+      {
+        text: 'Okay',
+        handler: () =>{
+          this.router.navigate(['/creazione-scheda']);
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        data: {
+          action: 'cancel',
+        },
+      },
+    ],
+  });
 
+  actionSheet.present();
 }
+}
+
+
+
+
+

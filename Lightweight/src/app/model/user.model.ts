@@ -1,4 +1,5 @@
 import { Abbonamento } from "./abbonamento.model";
+import { Scheda } from "./scheda.model";
 
 export interface User {
     uid: string ;
@@ -6,13 +7,6 @@ export interface User {
     displayName: string;
     abbonamento:Abbonamento;
     image:string;
-   
-   
-    
-    
-    
-
-   
-       
-    }
+    schede:Scheda[];
+}
 

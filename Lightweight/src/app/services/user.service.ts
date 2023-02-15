@@ -42,5 +42,24 @@ updateUserabb(user:User, abb:Abbonamento) {
   const userRef =doc(db, `users/${user.uid}`);
   return updateDoc(userRef, {abbonamento : abb});
 }
+createEmptyUser():User{
+  var empty:User ={
+
+    uid:"",
+    email:"",
+    displayName:"",
+    abbonamento :{
+      stato:false,
+      dataPrimoAbbonamento:null,
+      dataScadenza:null,
+      assicurazione:false,
+      certificato:false
+    },
+    image:"",
+    schede:[]
+  }
+
+  return empty;
+}
 
 }

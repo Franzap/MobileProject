@@ -25,9 +25,7 @@
     
     
 }
-.label{
-    margin-top: 5px;
-}
+
 .text{
     margin-top: 50px;
     text-align: center;
@@ -60,7 +58,11 @@
 }
 .icon{
    position: fixed; 
-   margin-top: 65px;
-   z-index: 1;
-   margin-left: 250px;
+   margin-top: 15px;
+   z-index: 2;
+   margin-left: 240px;
+}
+.Fine{
+    font-size: small;
+    margin-top: 10px;
 }

@@ -77,11 +77,21 @@
   
  
 
- <div class ="div">
-  <ion-label class="schede">
-    Schede allenamento
-    </ion-label>
- </div>
  
+<ng-template #schede>
+<p>ciao</p>
+</ng-template> 
+
+  <div *ngIf="user.schede.length == 0;else schede">
+    <p class="schede">
+      Crea una nuova scheda
+    </p>
+  
+
+   <ion-icon name="add-circle-outline" color="primary" class="plus" (click)="presentActionSheet()" ></ion-icon>
+  
+    
+  </div>
+</ion-content>
 
  

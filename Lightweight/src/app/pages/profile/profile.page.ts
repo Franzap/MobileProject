@@ -12,22 +12,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfilePage implements OnInit {
   public newUsername:any="";
+  public user:User=this.usercommunication.createEmptyUser();
 
-  //public user : any;
-  public user:User = {
-    uid:"",
-    email:"",
-    displayName:"",
-    abbonamento :{
-      //descrizione:"",
-      stato:false,
-      dataPrimoAbbonamento:null,
-      dataScadenza:null,
-      assicurazione:false,
-      certificato:false
-    },
-    image:"assets/user.png"
-  }
+  
   
   
   constructor( private router:Router, private route:ActivatedRoute, public usercommunication:UserService) { }
@@ -65,16 +52,6 @@ export class ProfilePage implements OnInit {
   this.router.navigate(['/select-image'],params);
     
   }
-   /*imageSelected(){
-    
-    const avatar =this.route.snapshot.queryParamMap.get('avatar');
-    if(avatar!=null && avatar!=undefined)
-   {
-    this.user.image=avatar;
-    window.alert(avatar);
-   }
    
-  }
-  */
   
 }

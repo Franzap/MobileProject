@@ -1,0 +1,102 @@
+.p{
+    font-size: small;
+    margin-left: 10px;
+}
+.item{
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.image{
+    position:absolute;
+    margin-left: 220px;
+    border-radius:999em;   
+-moz-border-radius:999em; 
+-webkit-border-radius:999em;
+  -o-border-radius: 999em;   
+}
+.grid{
+    margin-bottom: 50px;
+}
+.title{
+    font-size: medium;
+    position:absolute;
+    margin-top: -10px;
+}
+.imageEx{
+    position:absolute;
+    margin-left:170px;
+    border-radius:999em;   
+-moz-border-radius:999em; 
+-webkit-border-radius:999em;
+  -o-border-radius: 999em; 
+  margin-top: -29.5px;
+  z-index: 3;
+}
+
+
+
+ion-range {
+    
+    --bar-height: 4px;
+    --bar-border-radius: 8px;
+
+    --knob-size: 10px;
+    
+    
+  }
+  .Range{
+    position: absolute;
+    margin-left: -10px;
+    margin-right: 5px;
+    margin-top: 3px;
+    z-index: 2;
+  }
+  .Item{
+    position: absolute;
+    margin-left: 150px;
+    width: 100px;
+    margin-top: -46px;
+
+  }
+
+  .Item2{
+    position: absolute;
+    margin-left: 150px;
+    width: 100px;
+    margin-top: -46px;
+  }
+
+  .close{
+    position:absolute;
+    margin-top: -70px;
+    margin-left: 270px;
+    height: 33px;
+    width:  33px;
+  }
+
+  .currentImage{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 40px;
+  }
+
+  .currentDescrizione{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .Title{
+    text-align: center;
+    margin-top: 60px;
+    font-size: large;
+    
+  }
+
+  .freccia{
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+  }
