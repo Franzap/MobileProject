@@ -12,6 +12,7 @@ import { findIndex } from 'rxjs';
 })
 export class LoginPage implements OnInit {
 
+  
   public email:any;
   public password:any;
   constructor(public authentication : AuthenticationService, private router: Router) { }

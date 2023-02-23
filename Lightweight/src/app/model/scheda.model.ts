@@ -1,7 +1,8 @@
 import { Esercizio } from "./esercizio.model";
 
 export interface Scheda {
-    id:string;
+    tipologia:string;
     esercizi:Esercizio[];
     nome:string;
+    immagine:string
 }

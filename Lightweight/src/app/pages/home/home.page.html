@@ -78,11 +78,46 @@
  
 
  
-<ng-template #schede>
-<p>ciao</p>
-</ng-template> 
+<div *ngIf="user.schede.length > 0; else crea"></div>
+<p class="titleSchede">Schede allenamento</p>
 
-  <div *ngIf="user.schede.length == 0;else schede">
+<ion-slides pager="true">
+  
+    <ion-slide *ngFor="let scheda of schede">
+      <ion-card  class = "scheda" color = "medium">
+        <ion-card-header>
+          <ion-card-title class="schedaTitle">{{scheda.nome}}</ion-card-title>
+        
+        </ion-card-header>
+      
+        <ion-card-content>
+          <img src = {{scheda.immagine}} width = "45" height="45" class="schedaImg">
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card color="medium"  class = "scheda">
+        <ion-card-header>
+          <ion-card-title class="schedaTitle">Nuova scheda</ion-card-title>
+        
+        </ion-card-header>
+        <ion-card-content>
+          <ion-icon name="add-circle-outline" color="primary" (click)="presentActionSheet()" class="Plus"></ion-icon>
+        </ion-card-content>
+        
+      </ion-card>
+      
+    </ion-slide>
+  
+
+ 
+</ion-slides>
+
+  
+
+
+
+  <ng-template #crea>
     <p class="schede">
       Crea una nuova scheda
     </p>
@@ -90,8 +125,10 @@
 
    <ion-icon name="add-circle-outline" color="primary" class="plus" (click)="presentActionSheet()" ></ion-icon>
   
+  </ng-template>
+   
     
-  </div>
+  
 </ion-content>
 
  

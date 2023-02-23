@@ -5,6 +5,10 @@ import { RangeCustomEvent } from '@ionic/angular';
 import { RangeValue } from '@ionic/core';
 import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Scheda } from 'src/app/model/scheda.model';
+import { User } from 'src/app/model/user.model';
+import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-creazione-scheda',
@@ -13,12 +17,21 @@ import { Router } from '@angular/router';
 })
 export class CreazioneSchedaPage implements OnInit {
 
+  public user : User = this.usercommunication.createEmptyUser();
+  
+
+  //title scheda
+  public title:string = "";
+
+  //about ex
   public currentTitle:string="";
   public currentImage:string="";
   public currentDescrizione:string="";
 
   public isModalOpen = false;
+  //nserie
   public lastEmittedValue: RangeValue=0;
+  //nreps
   public LastEmittedValue: RangeValue=0;
 
 
@@ -52,11 +65,22 @@ export class CreazioneSchedaPage implements OnInit {
 
   
   constructor(public exercisecommunication:EserciziService,private actionSheetCtrl: ActionSheetController,
-    private router: Router) { }
+    private router: Router, public usercommunication:UserService, public route:ActivatedRoute) { }
 
   ngOnInit() {
     this.provaEsercizi();
+    this.returnUser();
   }
+
+  returnUser() {
+    const uid =this.route.snapshot.queryParamMap.get('uid');
+    this.usercommunication.getUserbyId(uid).subscribe(res =>{
+    this.user = res;
+    
+    
+   });
+  }
+
  
 
   handleChange(ev:any) {
@@ -74,14 +98,16 @@ export class CreazioneSchedaPage implements OnInit {
     this.currentEsercizi = ev.target.value;
     
   }
-  onIonChange(ev: Event, e:Esercizio) {
+  onIonChangeSerie(ev: Event, e:Esercizio) {
     //this.lastEmittedValue = (ev as RangeCustomEvent).detail.value;
-    e.nSerie=(ev as RangeCustomEvent).detail.value.toString()
+    var temp =(ev as RangeCustomEvent).detail.value.toString();
+    e.nSerie = +temp;
   }
   
-  OnIonChange(ev: Event , e:Esercizio) {
+  onIonChangeReps(ev: Event , e:Esercizio) {
    // this.LastEmittedValue = (ev as RangeCustomEvent).detail.value;
-    e.nReps=(ev as RangeCustomEvent).detail.value.toString()
+    var temp =(ev as RangeCustomEvent).detail.value.toString();
+    e.nReps = +temp;
   }
 
   setOpen(isOpen: boolean , e:Esercizio) {
@@ -117,5 +143,46 @@ export class CreazioneSchedaPage implements OnInit {
   
     actionSheet.present();
   }
+
+  save(){
+    /*let a = "";
+    a= a + this.title + "\n" + this.currentType.name + "\n";
+    for( var i of this.currentEsercizi){
+      a = a + i.nome  + "-" + i.nSerie + "-" +  i.nReps + "\n";
+    
+
+    }
+    
+    window.alert(a);
+    */
+    var temporaryScheda = this.createEmptyScheda();
+    temporaryScheda.nome=this.title;
+    temporaryScheda.tipologia=this.currentType.name;
+    temporaryScheda.immagine=this.currentType.img;
+    temporaryScheda.esercizi=this.currentEsercizi;
+    this.user.schede.push(temporaryScheda);
+    this.usercommunication.updateUser(this.user);
+    this.router.navigate(['/tabs/home'])
+   
+   /* window.alert(this.user.schede[0].nome);
+    window.alert(this.user.schede[0].immagine);
+    window.alert(this.user.schede[0].tipologia);
+    */
+  }
+  
+createEmptyScheda() : Scheda {
+
+  var scheda:Scheda = {
+
+    tipologia:"",
+    esercizi : [],
+    immagine : "",
+    nome :  ""
+  }
+
+
+  return scheda;
+}
+  
   
 }

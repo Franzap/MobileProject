@@ -3,6 +3,6 @@ export interface Esercizio {
     immagine:string;
     descrizione:string;
     nome:string;
-    nSerie:string;
-    nReps:string;
+    nSerie:number;
+    nReps:number;
 }

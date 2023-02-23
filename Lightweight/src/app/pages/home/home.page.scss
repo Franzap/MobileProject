@@ -1,4 +1,6 @@
 
+
+
 .image{
     position:fixed;
     margin-top: 45px;
@@ -122,10 +124,39 @@ position:fixed;
     height: 30px;
 }
 .plus{
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     margin-top: 50px;
     margin-left: 137px;
 
 }
 
+ion-slides {
+    height: 250px;
+  }
+
+.titleSchede{
+    text-align: center;
+    margin-top: 80px;
+    font-size: medium;
+}
+.scheda{
+    border-radius: 5px;
+    font-size: small;
+    width: 160px;
+    height: 120px;
+}
+
+.schedaImg{
+    height: 45px;
+    width: 45px;
+}
+
+.schedaTitle{
+    font-size: small;
+}
+
+.Plus{
+    height: 40px;
+    width: 40px;
+}

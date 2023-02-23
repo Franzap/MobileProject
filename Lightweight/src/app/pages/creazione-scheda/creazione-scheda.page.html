@@ -18,7 +18,9 @@
   <ion-item color="medium"class="nome">
     
    
-    <ion-input placeholder="example"></ion-input>
+    <ion-input placeholder="example" [(ngModel)] = "title">
+      
+    </ion-input>
   </ion-item>
 
   <p class="p">Seleziona tipologia scheda</p>
@@ -91,18 +93,19 @@
               <p class="p">N°serie {{ exercise.nSerie}} </p>
                 
               <ion-item  lines="none" color="medium" class="Item">
-                <ion-range (ionChange)="onIonChange($event , exercise)" max="10" class="Range">
+                <ion-range (ionChange)="onIonChangeSerie($event , exercise)" max="10" class="Range">
                    </ion-range>
                   </ion-item>
            <p class="p"> N°ripetizioni  {{ exercise.nReps }}</p>
 
            <ion-item  lines="none" color="medium" class="Item2">
-            <ion-range (ionChange)="OnIonChange($event , exercise)" max="100" class="Range">
+            <ion-range (ionChange)="onIonChangeReps($event , exercise)" max="100" class="Range">
                </ion-range>
               </ion-item>
 
            </ion-card>
         </ion-grid>
+
          
         
         
@@ -111,6 +114,10 @@
       
       
      </div>
+
+     <ion-button color="primary" class="save" expand = "block" (click)="save()">
+      Salva
+     </ion-button>
       
     
     

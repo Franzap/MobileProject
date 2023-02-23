@@ -1,4 +1,4 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/autenticazione.service';
@@ -13,7 +13,12 @@ import { userInfo } from 'os';
 import { Esercizio } from 'src/app/model/esercizio.model';
 import { EserciziService } from 'src/app/services/esercizi.service';
 import { ActionSheetController } from '@ionic/angular';
+import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+import  { EffectFade } from 'swiper';
+import { IonicSlides } from '@ionic/angular';
+import { Scheda } from 'src/app/model/scheda.model';
 
+SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom]);
 
 
 @Component({
@@ -22,6 +27,19 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+
+
+
+
+
+
+
+
+
+
+  
+  public schede:Scheda[] = [];
+
   public IsOpen:boolean = false;
   public giorniAbbonamentoRimasti:number=0;
  
@@ -54,6 +72,7 @@ export class HomePage implements OnInit {
     const uid =this.route.snapshot.queryParamMap.get('uid');
     this.usercommunication.getUserbyId(uid).subscribe(res =>{
     this.user = res;
+    this.schede = res.schede;
     this.isAbbonato();
    
    });
@@ -159,7 +178,12 @@ async presentActionSheet() {
       {
         text: 'Okay',
         handler: () =>{
-          this.router.navigate(['/creazione-scheda']);
+          const params : NavigationExtras = {
+            queryParams: {
+              uid:this.user.uid
+            }
+          };
+          this.router.navigate(['/creazione-scheda'], params);
         }
       },
       {

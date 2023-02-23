@@ -34,7 +34,7 @@ export class UserService {
   const db = getFirestore(firebaseApp);
   const userRef =doc(db, `users/${user.uid}`);
   return updateDoc(userRef, { displayName:user.displayName , image:user.image,
-   abbonamento:user.abbonamento, });
+   abbonamento:user.abbonamento,schede:user.schede });
 }
 updateUserabb(user:User, abb:Abbonamento) {
   const firebaseApp = getApp();
