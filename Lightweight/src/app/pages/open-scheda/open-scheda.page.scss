@@ -1,3 +1,27 @@
+.tipologia{
+
+    margin-top: 45px;
+    text-align: center;
+    font-size: smaller;
+}
+
+.imgT{
+    margin-top: 30px;
+    height: 50px;
+    width: 50px;
+    display: block;
+    margin-left: auto; 
+    margin-right: auto;
+
+}
+.esercizi{
+  position: absolute;
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: smaller;
+    z-index: 5;
+}
+
 .p{
     font-size: small;
     margin-left: 10px;
@@ -7,16 +31,10 @@
     margin-left: 10px;
     margin-right: 10px;
 }
-.image{
-    position:absolute;
-    margin-left: 220px;
-    border-radius:999em;   
--moz-border-radius:999em; 
--webkit-border-radius:999em;
-  -o-border-radius: 999em;   
-}
+
 .grid{
-    margin-bottom: 50px;
+  margin-top: 30px;
+    margin-bottom: 20px;
 }
 .title{
     font-size: medium;
@@ -36,22 +54,8 @@
 
 
 
-ion-range {
-    
-    --bar-height: 4px;
-    --bar-border-radius: 8px;
 
-    --knob-size: 10px;
-    
-    
-  }
-  .Range{
-    position: absolute;
-    margin-left: -10px;
-    margin-right: 5px;
-    margin-top: 3px;
-    z-index: 2;
-  }
+  
   .Item{
     position: absolute;
     margin-left: 150px;
@@ -94,26 +98,23 @@ ion-range {
     font-size: large;
     
   }
-
-  .freccia{
-    width: 25px;
-    height: 25px;
-    margin-left: 5px;
+  .buttn{
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 20px;
+    margin-bottom: 50px;
   }
 
-  .save{
-    border-radius: 5px;
-    margin-top: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 70px;
+  ion-toolbar {
+    --border-style:hidden;
   }
 
-  .trash{
-    position:absolute;
-    margin-left:240px;
-   height: 30px;
-   width: 30px;
-  margin-top: -29.5px;
-  z-index: 3;
+  .nome{
+    text-align: center;
+    margin-top: 30px;
+    color: #875dd4;
+    font-size: larger;
+    
   }
+
+ 

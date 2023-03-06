@@ -1,13 +1,112 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start" >
-      <ion-back-button defaultHref="/tabs/home">
-      </ion-back-button>
-    </ion-buttons>
-    <ion-title>prenotazioni</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content color="dark">
 
-<ion-content>
 
+  <ng-template #firstP>
+    <p class="text">Prenota il tuo primo accesso</p>
+    <ion-datetime #datetime color="primary"[firstDayOfWeek]="1"
+    [hourValues]="[6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
+    max="2023-{{end}}-{{endd}}T20:00:00"
+    min = "2023-{{start}}-{{startd}}T20:00:00"
+    minuteValues="0,30"
+    
+    
+    
+     >
+      <ion-buttons slot="buttons">
+        <ion-button color="danger" (click)="datetime.reset()">Reset</ion-button>
+        
+        <ion-button color="dark" (click)="confirm(datetime)">Conferma</ion-button>
+       
+      </ion-buttons>
+    </ion-datetime>
+    
+  </ng-template>
+
+
+    
+  <div *ngIf="isFirstP === false; else firstP">
+  <p class="text">Prenotazioni</p>
+
+
+  <ion-item  height="200" class="item" color="medium" >
+    <div>
+       <ion-icon name="calendar" color ="primary" class="calendar" (click)="setOpen(true )"></ion-icon>
+      </div>
+      <p class="P">Prenota un accesso</p>
+      
+    </ion-item>
+
+
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template >
+        <ion-header line="none">
+       <ion-toolbar color="primary" line ="none" >
+        
+            <ion-buttons slot="start">
+              <ion-button (click)="setOpen(false)" color="dark">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title color="dark">Prenota</ion-title>
+       </ion-toolbar>
+        </ion-header>
+        <ion-content color="dark">
+          <ion-datetime #datetime color="primary"[firstDayOfWeek]="1"
+          [hourValues]="[6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
+          max="2023-{{end}}-{{endd}}T20:00:00"
+          min = "2023-{{start}}-{{startd}}T20:00:00"
+          minuteValues="0,30"
+          
+          
+          
+           >
+            <ion-buttons slot="buttons">
+              <ion-button color="danger" (click)="datetime.reset()">Reset</ion-button>
+              
+              <ion-button color="dark" (click)="confirm(datetime)">Conferma</ion-button>
+             
+            </ion-buttons>
+          </ion-datetime>
+         
+        </ion-content>
+        
+        
+      </ng-template>
+    </ion-modal>
+
+    
+  <ion-item-group *ngIf="activeP.length > 0">
+    <ion-item-divider color="medium" class="divider">
+
+      <ion-label class="section">
+        Prenotazioni attive
+      </ion-label>
+     </ion-item-divider>
+     <ion-item *ngFor="let p of activeP"  color="success" class="success">
+      <ion-label >{{p | date: 'dd/MM/yyyy'}} alle {{p.getHours()}} : {{p.getMinutes()}}</ion-label>
+    </ion-item>
+    
+    
+  </ion-item-group>
+
+  <ion-item-group *ngIf="pastP.length > 0;">
+  <ion-item-divider color="medium" class="divider">
+
+    <ion-label class = "section">
+      Prenotazioni precedenti
+    </ion-label>
+   </ion-item-divider>
+   <ion-item *ngFor="let p of pastP" color="warning" class="success">
+    <ion-label color ="dark">{{p | date: 'dd/MM/yyyy'}} alle {{p.getHours()}} : {{p.getMinutes()}}</ion-label>
+  </ion-item>
+  
+  
+  </ion-item-group>
+
+  </div>
+  
+  
+
+   
+
+  
+  
 </ion-content>

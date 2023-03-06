@@ -83,7 +83,8 @@ export class AuthenticationService {
                 certificato:false
             },
             image:"assets/user.png",
-            schede:[]
+            schede:[],
+            prenotazioni:[]
         }
         return userRef.set(userData, {
             merge: true

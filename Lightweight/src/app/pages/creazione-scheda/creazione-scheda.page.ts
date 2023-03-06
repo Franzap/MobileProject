@@ -17,6 +17,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreazioneSchedaPage implements OnInit {
 
+  public scheda:Scheda=this.createEmptyScheda();
+  public currentIndex : number = 0;
+
+  public isModifica : boolean = false;
+
   public user : User = this.usercommunication.createEmptyUser();
   
 
@@ -38,6 +43,7 @@ export class CreazioneSchedaPage implements OnInit {
   public esercizi:Esercizio[] = [];
   
   public currentEsercizi :Esercizio[]=[];
+  public newEsercizi : Esercizio[] = [];
 
   public currentType :any ={
     id:"",
@@ -68,18 +74,47 @@ export class CreazioneSchedaPage implements OnInit {
     private router: Router, public usercommunication:UserService, public route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.provaEsercizi();
+   // this.provaEsercizi();
     this.returnUser();
   }
 
   returnUser() {
     const uid =this.route.snapshot.queryParamMap.get('uid');
+    const index = this.route.snapshot.queryParamMap.get('index');
+    this.exercisecommunication.getAllExercises().subscribe(res =>{
+    this.esercizi=res;
+    for(var e of this.esercizi){
+      e.nReps=0;
+      e.nSerie=0;
+    }
+    
     this.usercommunication.getUserbyId(uid).subscribe(res =>{
     this.user = res;
-    
-    
+    if(index!=null){
+      this.currentIndex = +index;
+      this.isModifica = true;
+      this.title=this.user.schede[+index].nome;
+      this.currentEsercizi=this.user.schede[+index].esercizi;
+      this.currentType.name= this.user.schede[+index].tipologia;
+      this.currentType.img= this.user.schede[+index].immagine;
+      this.scheda=this.user.schede[+index];
+      for(var E of this.currentEsercizi){
+        for (var e of this.esercizi){
+          
+          if (e.id === E.id){
+          this.esercizi.splice(this.esercizi.indexOf(e),1);
+          //this.esercizi.sort();
+        
+          }
+      }
+      
+        }
+      }
+ 
    });
-  }
+  });
+}
+  
 
  
 
@@ -87,17 +122,49 @@ export class CreazioneSchedaPage implements OnInit {
     this.currentType = ev.target.value;
   }
 
-  provaEsercizi() { 
+  /*provaEsercizi() { 
     this.exercisecommunication.getAllExercises().subscribe(res =>{
      this.esercizi=res;
+     if(this.isModifica==true){
+      
+     }
      
     });
    
    }
+   */
    HandleChange(ev:any) {
-    this.currentEsercizi = ev.target.value;
+    if(this.isModifica==false){
+      this.currentEsercizi=ev.target.value;
+    }else{
+    this.newEsercizi = ev.target.value;
+    if(this.newEsercizi.length == 0){
+      this.currentEsercizi=this.scheda.esercizi;}
+      if(this.newEsercizi.length !=0){
+        if(this.currentEsercizi.length==this.scheda.esercizi.length){
+         this.currentEsercizi= this.currentEsercizi.concat(this.newEsercizi);
+        }else{
+          this.currentEsercizi=this.scheda.esercizi;
+          this.currentEsercizi = this.currentEsercizi.concat(this.newEsercizi);
+
+          
+          }
+          
+        }
+            
+            
+            
+        }
+   
+         //this.currentEsercizi = this.currentEsercizi.concat(this.newEsercizi);
+      }
     
-  }
+   
+    /*this.newEsercizi=ev.target.value;
+    //this.esercizi.splice(this.esercizi.indexOf(ev),1);
+    this.currentEsercizi.concat(this.newEsercizi);
+    */
+  
   onIonChangeSerie(ev: Event, e:Esercizio) {
     //this.lastEmittedValue = (ev as RangeCustomEvent).detail.value;
     var temp =(ev as RangeCustomEvent).detail.value.toString();
@@ -128,7 +195,12 @@ export class CreazioneSchedaPage implements OnInit {
         {
           text: 'Okay',
           handler: () =>{
-            this.router.navigate(['/tabs/home']);
+            if (this.isModifica == true){
+              this.router.navigate(['/open-scheda']);
+            }else{
+              this.router.navigate(['/tabs/home']);
+            }
+            
           }
         },
         {
@@ -155,6 +227,8 @@ export class CreazioneSchedaPage implements OnInit {
     
     window.alert(a);
     */
+   if(this.isModifica==false){
+
     var temporaryScheda = this.createEmptyScheda();
     temporaryScheda.nome=this.title;
     temporaryScheda.tipologia=this.currentType.name;
@@ -163,6 +237,17 @@ export class CreazioneSchedaPage implements OnInit {
     this.user.schede.push(temporaryScheda);
     this.usercommunication.updateUser(this.user);
     this.router.navigate(['/tabs/home'])
+
+   }
+    else{
+      this.user.schede[this.currentIndex].nome=this.title;
+      this.user.schede[this.currentIndex].tipologia=this.currentType.name;
+      this.user.schede[this.currentIndex].immagine=this.currentType.img;
+      this.user.schede[this.currentIndex].esercizi=this.currentEsercizi;
+      this.usercommunication.updateUser(this.user);
+      this.router.navigate(['/tabs/home'])
+
+    }
    
    /* window.alert(this.user.schede[0].nome);
     window.alert(this.user.schede[0].immagine);
@@ -183,6 +268,38 @@ createEmptyScheda() : Scheda {
 
   return scheda;
 }
+  async elimina(e:Esercizio){
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Vuoi eliminare questo esercizio?',
+     
+      cssClass: 'my-custom-class',
+      buttons: [
+       
+        {
+          text: 'Okay',
+          handler: () =>{
+            e.nReps=0;
+            e.nSerie=0;
+            //this.currentEsercizi.splice(this.currentEsercizi.indexOf(e),1);
+            this.scheda.esercizi.splice(this.currentEsercizi.indexOf(e),1);
+            if(this.currentEsercizi.length!=this.scheda.esercizi.length){
+              this.currentEsercizi.splice(this.currentEsercizi.indexOf(e),1);
+            }
+            this.esercizi.push(e);
+            
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          data: {
+            action: 'cancel',
+          },
+        },
+      ],
+    });
   
+    actionSheet.present();
+  }
   
 }

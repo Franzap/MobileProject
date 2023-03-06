@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import { Abbonamento } from "./abbonamento.model";
 import { Scheda } from "./scheda.model";
 
@@ -8,5 +9,6 @@ export interface User {
     abbonamento:Abbonamento;
     image:string;
     schede:Scheda[];
+    prenotazioni:Timestamp[];
 }
 

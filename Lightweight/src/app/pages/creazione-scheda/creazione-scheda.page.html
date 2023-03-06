@@ -6,7 +6,14 @@
       </ion-icon> 
       
     </ion-buttons>
-    <ion-title color="dark">Nuova Scheda</ion-title>
+
+    
+
+    <ng-template #modifica>
+      
+      <ion-title color="dark"> Modifica scheda</ion-title>
+    </ng-template>
+    <ion-title *ngIf="isModifica === false; else modifica"  color="dark">Nuova scheda</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -32,15 +39,23 @@
           
           placeholder="Select type"
           (ionChange)="handleChange($event)"
-          
+          [(ngModel)] = "currentType"
         >
-          <ion-select-option *ngFor="let type of types" [value]="type" color="medium">{{ type.name }}</ion-select-option>
+          <ion-select-option *ngFor="let type of types" [value]="type" color="medium" 
+          >{{ type.name }}</ion-select-option>
         </ion-select>
         <img *ngIf= "currentType.img!='';else noImg" src={{currentType.img}} width = "35" height="35" class="image">
       <ng-template #noImg></ng-template>
       </ion-item>
 
-      <p class="p">
+
+      <ng-template #aggiungi>
+        <p class="p">
+          Aggiungi esercizi
+        </p>
+      </ng-template>
+
+      <p *ngIf="isModifica===false;else aggiungi"  class="p">
         Seleziona esercizi
       </p>
 
@@ -68,7 +83,17 @@
             <ion-card-header>
               <ion-card-title class="title">{{ exercise.nome }}</ion-card-title>
             </ion-card-header>
+            
+
+            <ng-template #trash>
+              <img src= {{exercise.immagine}} class="imageEx" width = "55" height="30"(click)="setOpen(true , exercise)" >
+              <ion-icon *ngIf="scheda.esercizi.indexOf(exercise)!=-1;" name="trash" color = "danger" class ="trash" (click)="elimina(exercise)"></ion-icon>
+            </ng-template>
+
+            <div *ngIf="isModifica==false;else trash">
               <img src= {{exercise.immagine}} class="imageEx" width = "65" height="30"(click)="setOpen(true , exercise)" >
+            </div>
+              
              
               <ion-modal [isOpen]="isModalOpen">
                 <ng-template>

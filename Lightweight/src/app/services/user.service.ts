@@ -34,7 +34,7 @@ export class UserService {
   const db = getFirestore(firebaseApp);
   const userRef =doc(db, `users/${user.uid}`);
   return updateDoc(userRef, { displayName:user.displayName , image:user.image,
-   abbonamento:user.abbonamento,schede:user.schede });
+   abbonamento:user.abbonamento,schede:user.schede , prenotazioni:user.prenotazioni});
 }
 updateUserabb(user:User, abb:Abbonamento) {
   const firebaseApp = getApp();
@@ -56,7 +56,8 @@ createEmptyUser():User{
       certificato:false
     },
     image:"",
-    schede:[]
+    schede:[],
+    prenotazioni:[]
   }
 
   return empty;

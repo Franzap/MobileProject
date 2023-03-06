@@ -58,6 +58,10 @@ const routes: Routes = [
   {
     path: 'creazione-scheda',
     loadChildren: () => import('./pages/creazione-scheda/creazione-scheda.module').then( m => m.CreazioneSchedaPageModule)
+  },
+  {
+    path: 'open-scheda',
+    loadChildren: () => import('./pages/open-scheda/open-scheda.module').then( m => m.OpenSchedaPageModule)
   }
 ];
 

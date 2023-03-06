@@ -198,6 +198,25 @@ async presentActionSheet() {
 
   actionSheet.present();
 }
+
+navigateToScheda(s:Scheda){
+  var a = this.user.schede.indexOf(s);
+  const params : NavigationExtras = {
+    queryParams: {
+      uid:this.user.uid,
+      index:a
+    }
+  };
+  this.router.navigate(['/open-scheda'], params);
+}
+
+
+prova(s:Scheda){
+ // window.alert(s.nome);
+ 
+  var a = this.user.schede.indexOf(s);
+  window.alert(a);
+}
 }
 
 

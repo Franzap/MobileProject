@@ -69,6 +69,16 @@ public user:User= this.usercommunication.createEmptyUser();
       await toast.present();
     }
 
+    vaiPrenotazioni(){
+      const params : NavigationExtras = {
+        queryParams: {
+          uid:this.uid,
+        
+        }
+    };
+    this.router.navigate(['/tabs/prenotazioni'],params);
+    }
+
 
 
   }

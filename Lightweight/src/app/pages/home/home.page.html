@@ -78,13 +78,13 @@
  
 
  
-<div *ngIf="user.schede.length > 0; else crea"></div>
+<div *ngIf="user.schede.length > 0; else crea">
 <p class="titleSchede">Schede allenamento</p>
 
 <ion-slides pager="true">
   
     <ion-slide *ngFor="let scheda of schede">
-      <ion-card  class = "scheda" color = "medium">
+      <ion-card  class = "scheda" color = "medium" (click)="navigateToScheda(scheda)">
         <ion-card-header>
           <ion-card-title class="schedaTitle">{{scheda.nome}}</ion-card-title>
         
@@ -112,6 +112,7 @@
 
  
 </ion-slides>
+</div>
 
   
 
