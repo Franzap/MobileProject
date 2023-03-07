@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Timestamp } from 'firebase/firestore';
 import { ToastController } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
 
 
 
@@ -33,7 +34,8 @@ export class PrenotazioniPage implements OnInit {
 
   public isModalOpen: boolean = false;
   constructor(public route: ActivatedRoute, public usercommunication: UserService,
-    private toastController: ToastController, public router: Router) { }
+    private toastController: ToastController, public router: Router,
+    public actionSheetCtrl:ActionSheetController) { }
 
   ngOnInit() {
     this.initDateTime();
@@ -208,5 +210,71 @@ export class PrenotazioniPage implements OnInit {
     } else {
       this.endd = t3.toString();
     }
+  }
+
+ async remove(p:Date){
+//this.activeP.splice(this.activeP.indexOf(p),1);
+var temp = Timestamp.fromDate(p);
+
+
+var b=false;
+for(var t of this.user.prenotazioni ){
+  if(t.isEqual(temp)){
+    b=true;
+    temp=t;
+  }
+}
+if(b==true){
+ 
+  this.user.prenotazioni.splice(this.user.prenotazioni.indexOf(temp),1);
+  await this.usercommunication.updateUser(this.user);}
+ //else{window.alert("error");}
+  }
+
+  async presentActionSheet(p:Date) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Vuoi disdire questa prenotazione?',
+      cssClass: 'my-custom-class',
+      buttons: [
+       
+        {
+          text: 'Okay',
+          handler: () =>{
+            this.remove(p);
+            this.PresentToast();
+            
+            
+            
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          data: {
+            action: 'cancel',
+          },
+        },
+      ],
+    });
+  
+    actionSheet.present();
+  }
+
+  async PresentToast() {
+    const toast = await this.toastController.create({
+      message: 'Prenotazione cancellata correttamente',
+      duration: 3000,
+      position: 'middle',
+      color: 'success',
+
+      buttons: [
+        {
+          text: 'Annulla',
+          role: 'cancel'
+        }
+      ],
+    });
+
+    await toast.present();
   }
 }

@@ -82,6 +82,7 @@
      </ion-item-divider>
      <ion-item *ngFor="let p of activeP"  color="success" class="success">
       <ion-label >{{p | date: 'dd/MM/yyyy'}} alle {{p.getHours()}} : {{p.getMinutes()}}</ion-label>
+      <ion-icon name="trash" class="remove" color ="danger" (click)="presentActionSheet(p)" ></ion-icon>
     </ion-item>
     
     
