@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { IonTabButton, NavController } from '@ionic/angular';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/autenticazione.service';
 import { User } from 'src/app/model/user.model';
@@ -42,12 +42,14 @@ public user:User= this.usercommunication.createEmptyUser();
       
       }
   };
-  if(this.user.abbonamento.stato==true){
+  
     this.router.navigate(['/tabs/abbonamento'],params);
-   }else{
-    this.presentToast();
-   // this.router.navigate(['/tabs/home']);
    }
+   NoAbb(){
+    this.presentToast();
+  
+    
+   
   
     }
 

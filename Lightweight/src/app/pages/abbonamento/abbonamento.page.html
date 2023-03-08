@@ -10,26 +10,44 @@
     </ng-template>
   
     
-    <div *ngIf="user.abbonamento.stato===true;else  noAbbonamento"> <ion-list [inset]="true"  class="list"color="secondary" >
-      <img src="assets/iconWhite.png" class="icon" width = "25" height="25">
-      <ion-list-header color ="secondary" class="username">{{user.displayName}} </ion-list-header>
-      <ion-item color="secondary">
-        <ion-thumbnail slot="start">
-          <img src= {{user.image}} width = "45" height="45" class="foto" >
-        </ion-thumbnail>
+    <div *ngIf="user.abbonamento.stato===true;else  noAbbonamento"> 
+     
+      <ion-card color="secondary" line="none"  class="Item">
+       
+          <p class="title">{{user.displayName}}</p>
+          
+          <img src="assets/iconWhite.png" class="icon" width = "25" height="25" >
         
-        <ion-label class="label" >
-          <p class="inizio"> Abbonato dal: {{startDate  | date: 'dd/MM/yyyy'}}</p>
-          <p *ngIf ="isActive === true ; else notActive"   class="fine">Scadenza: {{endDate  | date: 'dd/MM/yyyy'}}</p>
-          <ng-template #notActive>
-            <p  class="Fine">
-              Scaduto il: {{endDate  | date: 'dd/MM/yyyy'}}
-            </p>
-          </ng-template>
-        </ion-label>
+        
+        
+      
+          
+            <img src= {{user.image}} width = "45" height="45" class="foto" >
+          
+          
+          
+            <p class="inizio"> Abbonato dal: {{startDate  | date: 'dd/MM/yyyy'}}</p>
+            <p *ngIf ="isActive === true ; else notActive"   class="fine">Scadenza: {{endDate  | date: 'dd/MM/yyyy'}}</p>
+            <ng-template #notActive>
+              <p  class="Fine">
+                Scaduto il: {{endDate  | date: 'dd/MM/yyyy'}}
+              </p>
+            </ng-template>
+          
+        
+          
 
-      </ion-item>
-    </ion-list>
+          
+
+  
+        
+      </ion-card>
+     
+        
+    
+    
+      
+    
 
     <ng-template #noCertificato>
       <ion-card color="warning" class="firstWarning">

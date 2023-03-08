@@ -62,6 +62,10 @@ const routes: Routes = [
   {
     path: 'open-scheda',
     loadChildren: () => import('./pages/open-scheda/open-scheda.module').then( m => m.OpenSchedaPageModule)
+  },
+  {
+    path: 'policy',
+    loadChildren: () => import('./pages/policy/policy.module').then( m => m.PolicyPageModule)
   }
 ];
 

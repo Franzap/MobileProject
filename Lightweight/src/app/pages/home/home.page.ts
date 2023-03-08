@@ -13,12 +13,9 @@ import { userInfo } from 'os';
 import { Esercizio } from 'src/app/model/esercizio.model';
 import { EserciziService } from 'src/app/services/esercizi.service';
 import { ActionSheetController } from '@ionic/angular';
-import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
-import  { EffectFade } from 'swiper';
-import { IonicSlides } from '@ionic/angular';
+
 import { Scheda } from 'src/app/model/scheda.model';
 
-SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom]);
 
 
 @Component({

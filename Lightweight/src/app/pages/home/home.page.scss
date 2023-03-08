@@ -29,17 +29,21 @@ position:fixed;
 .notifications {
     height: 22px;
     width: 22px;
-    position:fixed;
-    margin-left: 250px;
+    //position:fixed;
+   // margin-left: 250px;
+    float: right;
+    margin-right: 25px;
     margin-top: 40px;
 }
 
 .settings {
     height: 22px;
     width: 22px;
-    margin-left:280px;
-    position:fixed;
+   // margin-left:280px;
+   // position:fixed;
     margin-top: 40px;
+    float: right;
+    margin-right: 10px;
 }
 
 .orari {
@@ -127,7 +131,8 @@ position:fixed;
     height: 45px;
     width: 45px;
     margin-top: 50px;
-    margin-left: 137px;
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -159,4 +164,8 @@ ion-slides {
 .Plus{
     height: 40px;
     width: 40px;
+}
+.div{
+    display: flex;
+    justify-content: center;
 }

@@ -277,4 +277,8 @@ if(b==true){
 
     await toast.present();
   }
+
+  prova(){
+    console.log("ciao");
+  }
 }
