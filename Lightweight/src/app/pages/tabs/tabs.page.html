@@ -1,9 +1,7 @@
-<ion-header >
-  
-</ion-header>
+
 
 <ion-content color="dark">
-<ion-tabs>
+<ion-tabs class="bottom_nav">
   <ion-tab-bar slot ="bottom" color="dark" >
     <ion-tab-button *ngIf= "user.abbonamento.stato===true;else noAbb" tab="abbonamento" (click)="vaiAbb()" class="b" >
        <ion-icon   name="albums" ></ion-icon>
