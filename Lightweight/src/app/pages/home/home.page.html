@@ -1,120 +1,100 @@
 <ion-header>
- 
+
 </ion-header>
 
-<ion-content color ="dark">
-
-  <div>
-    <img src = {{user.image}} width = "45" height="45" (click)="userNavigate()" class="image">
-    <img>
-  </div>
-    
-      
- 
-
-<div>
-  <ion-label class="title">
-    Benvenuto
-    </ion-label>
-  </div>
-  
-    <ion-label  class ="username" id="username" position = "fixed" >
-     {{user.displayName}}
-      </ion-label> 
-
-      <ion-icon name ="notifications-outline" class="notifications" routerLink ="/notifications" ></ion-icon>
-      
-      <ion-icon name ="settings-outline" class="settings" routerLink ="/settings"></ion-icon>
-
-  <ng-template #closed>
-    <ion-card class="chiuso" color="danger" >
-      <ion-card-title class="titleChiuso">Apre alle {{oraApertura }} : {{minutiApertura}}</ion-card-title>
-      <ion-card-content>
-      </ion-card-content>
-   </ion-card>
-  </ng-template>
-
-  <div *ngIf = "IsOpen === true ; else closed">
-    <ion-card class="orari" color="success" >
-      <ion-card-title class="titleAperto">Chiude alle {{oraChiusura }} : {{minutiChiusura}}</ion-card-title>
-      <ion-card-content id="orari" class="aperto" >
-      </ion-card-content>
-   </ion-card>
-  </div>
-    
-
-  <ng-template #scaduto>
-   
-    <ion-card class="scaduto" color="danger" >
-      <ion-card-title class="titleScaduto">Abbonamento Scaduto  </ion-card-title> 
-    </ion-card>
-     
-  
-  </ng-template>
-     
-
-
-
-  <ng-template #abbonato>
-    <div *ngIf ="giorniAbbonamentoRimasti >0 && user.abbonamento.stato==true ; else scaduto">
-      <ion-card class="abbonato" color="success" >
-      <ion-card-title class="siAbb">Scadenza abbonamento tra {{giorniAbbonamentoRimasti}} giorni</ion-card-title> 
-      </ion-card>
+<ion-content color="dark" class = "body">
+  <section class="profile_nav">
+    <div class="profile_nav_sub profile_image">
+      <img src={{user.image}} (click)="userNavigate()" id="profile_picture"><img>
     </div>
-  </ng-template>
-    
-  
+    <div class="profile_nav_sub profile_section profile_text">
+      <p><small>Benvenuto</small><br>{{user.displayName}}</p>
+    </div>
+    <div class="profile_nav_sub profile_section">
+      <ion-icon name="notifications-outline" class="profile_icon" routerLink="/notifications"></ion-icon>
+      <ion-icon name="settings-outline" class="profile_icon" routerLink="/settings"></ion-icon>
+    </div>
+  </section>
 
-    
-  
+  <section>
+    <ng-template #open>
+      <div class="stato_informazioni background_success">
+        <p>Chiusura alle {{oraChiusura}}:{{minutiChiusura}}</p>
+      </div>
+    </ng-template>
 
-<div *ngIf = "user.abbonamento.stato == false ; else abbonato">
-  <ion-card  class="abbonamento" color="danger">
-    <ion-card-title class="noAbb">Nessun Abbonamento</ion-card-title>
-    
-    </ion-card>
-</div>
-  
- 
+    <ng-template #closed>
+      <div class="stato_informazioni background_warn">
+        <p>Apertura alle {{oraApertura}}:{{minutiApertura}}</p>
+      </div>
+    </ng-template>
 
- 
-<div *ngIf="user.schede.length > 0; else crea">
-<p class="titleSchede">Schede allenamento</p>
+    <div *ngIf="IsOpen === true; then open else closed"
+    class="informazioni_servizio"></div>
 
-<ion-slides pager="true">
-  
-    <ion-slide *ngFor="let scheda of schede">
-      <ion-card  class = "scheda" color = "medium" (click)="navigateToScheda(scheda)">
-        <ion-card-header>
-          <ion-card-title class="schedaTitle">{{scheda.nome}}</ion-card-title>
-        
-        </ion-card-header>
+
+
+    <div *ngIf="giorniAbbonamentoRimasti >0; then abbonato else scaduto" class="scadenza_abbonamento">
       
-        <ion-card-content>
-          <img src = {{scheda.immagine}} width = "45" height="45" class="schedaImg">
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-    <ion-slide>
-      <ion-card color="medium"  class = "scheda">
-        <ion-card-header>
-          <ion-card-title class="schedaTitle">Nuova scheda</ion-card-title>
-        
-        </ion-card-header>
-        <ion-card-content>
-          <ion-icon name="add-circle-outline" color="primary" (click)="presentActionSheet()" class="Plus"></ion-icon>
-        </ion-card-content>
-        
-      </ion-card>
+    </div>
+
+    <ng-template #abbonato>
+      <div class="stato_informazioni background_success">
+        <p>Scadenza abbonamento tra {{giorniAbbonamentoRimasti}} giorni</p>
+      </div>
+    </ng-template>
+    <ng-template #scaduto>
+      <ng-template #abbonamento_presente>
+        <p>Abbonamento Scaduto</p>
+      </ng-template>
+
+      <ng-template #abbonamento_assente>
+        <p>Nessun Abbonamento</p>
+      </ng-template>
       
-    </ion-slide>
-  
+      <div *ngIf ="user.abbonamento.stato == true; then abbonamento_presente else abbonamento_assente " class="stato_informazioni background_warn">
+        
+      </div>
+    </ng-template>
+  </section>
+   
+  <div *ngIf="user.schede.length > 0; else crea">
+    <p >Schede allenamento</p>
 
- 
-</ion-slides>
-</div>
+    <ion-slides pager="true">
 
-  
+      <ion-slide *ngFor="let scheda of schede">
+        <ion-card class="scheda" color="medium" (click)="navigateToScheda(scheda)">
+          <ion-card-header>
+            <ion-card-title class="schedaTitle">{{scheda.nome}}</ion-card-title>
+
+          </ion-card-header>
+
+          <ion-card-content>
+            <img src={{scheda.immagine}} width="45" height="45" class="schedaImg">
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card color="medium" class="scheda">
+          <ion-card-header>
+            <ion-card-title class="schedaTitle">Nuova scheda</ion-card-title>
+
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="add-circle-outline" color="primary" (click)="presentActionSheet()" class="Plus"></ion-icon>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-slide>
+
+
+
+    </ion-slides>
+  </div>
+
+
 
 
 
@@ -122,14 +102,12 @@
     <p class="schede">
       Crea una nuova scheda
     </p>
-  
-<div class="div">
-   <ion-icon name="add-circle-outline" color="primary" class="plus" (click)="presentActionSheet()" ></ion-icon>
-  </div>
-  </ng-template>
-   
-    
-  
-</ion-content>
 
- 
+    <div class="div">
+      <ion-icon name="add-circle-outline" color="primary" class="plus" (click)="presentActionSheet()"></ion-icon>
+    </div>
+  </ng-template>
+
+
+
+</ion-content>

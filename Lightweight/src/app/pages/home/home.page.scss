@@ -1,65 +1,40 @@
-
-
-
-.image{
-    position:fixed;
-    margin-top: 45px;
-    margin-left:25px;
-    border-radius:999em;   
--moz-border-radius:999em; 
--webkit-border-radius:999em;
-  -o-border-radius: 999em;   
-    
+.body{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.profile_nav{
+    margin-top:50px;
+    display: flex;
+}
+#profile_picture{
+    height: 70px;
+    width: 70px;
+    border-radius: 999em;
+}
+.profile_icon{
+    height: 25px;
+    width: 25px;
+    padding: 0em 0.3em;
+}
+.profile_image{
+    padding: 0em 1em;
 }
 
-.title {
-margin-top : 30px;
-margin-left:100px;
-font-size: small;
-position:fixed;
+.profile_nav_sub{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.username {
-    margin-top : 50px;
-    margin-left: 100px;
-    font-size: medium;
-    position: fixed;
+.profile_section{
+    margin: auto;
 }
 
-.notifications {
-    height: 22px;
-    width: 22px;
-    //position:fixed;
-   // margin-left: 250px;
-    float: right;
-    margin-right: 25px;
-    margin-top: 40px;
-}
-
-.settings {
-    height: 22px;
-    width: 22px;
-   // margin-left:280px;
-   // position:fixed;
-    margin-top: 40px;
-    float: right;
-    margin-right: 10px;
-}
-
-.orari {
-    margin-top: 100px;
-    margin-left: 20px;
-    margin-right: 20px;
-    height: 30px;
-    
-    
-
-}
-.chiuso {
-    margin-top: 100px;
-    margin-left: 20px;
-    margin-right: 20px;
-    height: 30px;
+.profile_text{
+    flex-direction: column;
 }
 
 .abbonamento {
@@ -77,21 +52,32 @@ position:fixed;
 }
 .aperto {
    text-align: center;
-    color:black;
-   
-    
-    
+   color:black;  
 }
-
-
-
 .schede {
    margin-top:80px;
    text-align: center;
    font-size: small;
 }
+.stato_informazioni{
+    display: flex;
+    height: 50px;
+    width: 200px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
 
-
+.background_warn{
+    background-color: red;
+}
+.background_succes{
+    background-color: green;
+}
 
 .titleChiuso {
     margin-top: 5px;
