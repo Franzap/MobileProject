@@ -25,15 +25,17 @@ public endDate:Date=new Date();
 public End:string= "";
 public user:User= this.usercommunication.createEmptyUser();
 
-  constructor(public route:ActivatedRoute, public usercommunication:UserService) { }
+  constructor(/*public route:ActivatedRoute, */public usercommunication:UserService) { }
 
-  ngOnInit() {this.start();
+  ngOnInit() {
+    //window.alert("init");
+    this.start();
   }
 
   start(){
-    const uid =this.route.snapshot.queryParamMap.get('uid');
+    
    
-    this.usercommunication.getUserbyId(uid).subscribe(res =>{
+    this.usercommunication.getUserbyId().subscribe(res =>{
       this.user = res;
       if(this.user.abbonamento.dataPrimoAbbonamento!=null)
       {this.startDate=this.user.abbonamento.dataPrimoAbbonamento.toDate();

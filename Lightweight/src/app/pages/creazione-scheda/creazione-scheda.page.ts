@@ -88,7 +88,7 @@ export class CreazioneSchedaPage implements OnInit {
       e.nSerie=0;
     }
     
-    this.usercommunication.getUserbyId(uid).subscribe(res =>{
+    this.usercommunication.getUserbyId().subscribe(res =>{
     this.user = res;
     if(index!=null){
       this.currentIndex = +index;
@@ -177,13 +177,16 @@ export class CreazioneSchedaPage implements OnInit {
     e.nReps = +temp;
   }
 
-  setOpen(isOpen: boolean , e:Esercizio) {
+   setOpen(isOpen: boolean , e:Esercizio) {
     this.isModalOpen = isOpen;
+    if(isOpen == true){
     this.currentImage= e.immagine;
     this.currentDescrizione= e.descrizione;
     this.currentTitle = e.nome;
+    }
 
   }
+  
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({

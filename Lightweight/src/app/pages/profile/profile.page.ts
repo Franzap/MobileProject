@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Route } from '@angular/router';
-import { Router ,ActivatedRoute} from '@angular/router';
-import { Timestamp } from 'firebase/firestore';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { AuthenticationService } from 'src/app/services/autenticazione.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,47 +10,32 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  public newUsername:any="";
-  public user:User=this.usercommunication.createEmptyUser();
-
-  
-  
-  
-  constructor( private router:Router, private route:ActivatedRoute, public usercommunication:UserService) { }
+  public newUsername: any = "";
+  public user: User = this.usercommunication.createEmptyUser();
+  constructor(private router: Router,
+    public usercommunication: UserService,
+    public auth: AuthenticationService) { }
 
   ngOnInit() {
     this.initUser();
-    
   }
 
   initUser() {
-    const uid =this.route.snapshot.queryParamMap.get('uid');
-    this.usercommunication.getUserbyId(uid).subscribe(res =>{
-    this.user = res;
-    
-    
-   });
-   //this.imageSelected();
+    this.usercommunication.getUserbyId().subscribe(res => {
+      this.user = res;
+    });
   }
 
   save() {
-
-    if(this.newUsername!="")
-    {this.user.displayName=this.newUsername;}
-   
+    if (this.newUsername != "") {
+      this.user.displayName = this.newUsername;
+    }
     this.usercommunication.updateUser(this.user);
     this.router.navigate(['/tabs/home']);
+  }
 
+  async logout() {
+    await this.auth.SignOut();
+    localStorage.clear();
   }
-  navigateToSelection(){
-    const params : NavigationExtras = {
-      queryParams: {
-          uid:this.user.uid
-      }
-  };
-  this.router.navigate(['/select-image'],params);
-    
-  }
-   
-  
 }

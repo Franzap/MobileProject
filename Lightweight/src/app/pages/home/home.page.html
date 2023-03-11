@@ -2,10 +2,14 @@
 
 </ion-header>
 
-<ion-content color="dark" class = "body">
+
+
+
+
+<ion-content *ngIf="user.uid!='';else start"  color="dark" class = "body">
   <section class="profile_nav">
     <div class="profile_nav_sub profile_image">
-      <img src={{user.image}} (click)="userNavigate()" id="profile_picture"><img>
+      <img src={{user.image}} routerLink="/profile" id="profile_picture"><img>
     </div>
     <div class="profile_nav_sub profile_section profile_text">
       <p><small>Benvenuto</small><br>{{user.displayName}}</p>
@@ -19,13 +23,13 @@
   <section>
     <ng-template #open>
       <div class="stato_informazioni background_success">
-        <p>Chiusura alle {{oraChiusura}}:{{minutiChiusura}}</p>
+        <p>Chiusura alle {{stringChiusura}}</p>
       </div>
     </ng-template>
 
     <ng-template #closed>
       <div class="stato_informazioni background_warn">
-        <p>Apertura alle {{oraApertura}}:{{minutiApertura}}</p>
+        <p>Apertura alle {{stringApertura}}</p>
       </div>
     </ng-template>
 
@@ -62,7 +66,7 @@
 
     <ion-slides pager="true">
 
-      <ion-slide *ngFor="let scheda of schede">
+      <ion-slide *ngFor="let scheda of user.schede">
         <ion-card class="scheda" color="medium" (click)="navigateToScheda(scheda)">
           <ion-card-header>
             <ion-card-title class="schedaTitle">{{scheda.nome}}</ion-card-title>
@@ -98,6 +102,7 @@
 
 
   <ng-template #crea>
+    
     <p class="schede">
       Crea una nuova scheda
     </p>
@@ -110,3 +115,10 @@
 
 
 </ion-content>
+
+
+<ng-template #start>
+  <ion-content color="dark" class= "spinnerDiv">
+    <ion-spinner class="spinner" color="primary"></ion-spinner>
+  </ion-content>
+</ng-template>

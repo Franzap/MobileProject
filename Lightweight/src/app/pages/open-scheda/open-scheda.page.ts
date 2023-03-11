@@ -52,7 +52,7 @@ export class OpenSchedaPage implements OnInit {
     const uid =this.route.snapshot.queryParamMap.get('uid');
     const index = this.route.snapshot.queryParamMap.get('index');
     
-    this.usercommunication.getUserbyId(uid).subscribe(res =>{
+    this.usercommunication.getUserbyId().subscribe(res =>{
     this.user = res;
     this.schede = res.schede;
     if(index!=null )
@@ -81,10 +81,11 @@ export class OpenSchedaPage implements OnInit {
 
 setOpen(isOpen: boolean , e:Esercizio) {
   this.isModalOpen = isOpen;
+  if(isOpen==true){
   this.currentImage= e.immagine;
   this.currentDescrizione= e.descrizione;
   this.currentTitle = e.nome;
-
+  }
 }
 modifica(){
   const params : NavigationExtras = {

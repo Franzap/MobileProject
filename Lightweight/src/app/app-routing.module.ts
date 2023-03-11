@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, ROUTES, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthenticationService } from './services/autenticazione.service';
+
+
+
 
 const routes: Routes = [
   
@@ -66,7 +70,9 @@ const routes: Routes = [
   {
     path: 'policy',
     loadChildren: () => import('./pages/policy/policy.module').then( m => m.PolicyPageModule)
-  }
+  },
+  
+  
 ];
 
 @NgModule({
@@ -74,6 +80,45 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
     TranslateModule.forRoot()
   ],
-  exports: [RouterModule]
+  exports: [RouterModule]/*,
+  providers :[
+    {
+      provide: ROUTES,
+      useFactory:()=>{
+
+        let otherRoutes: Routes = [];
+        var auth:AuthenticationService;
+        var temp = "";
+        var a = JSON.parse(localStorage.getItem('user') || '{}') ;
+        if(a.uid !=null){
+ 
+         temp = a.uid;
+        }
+        if(temp == ""){
+          otherRoutes.push({
+            path:'',
+            redirectTo: 'login' ,
+            pathMatch: 'full'
+          });
+        }else{
+          otherRoutes.push({
+            path:'',
+            redirectTo: 'login' ,
+            pathMatch: 'full'
+          });
+        }
+        return [
+       ...otherRoutes,
+       ...routes
+        
+        ];
+ },
+        multi : true
+      }
+    
+  ]*/
 })
+
+
 export class AppRoutingModule { }
+

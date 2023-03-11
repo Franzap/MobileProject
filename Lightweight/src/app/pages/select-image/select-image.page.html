@@ -11,7 +11,7 @@
 <ion-content color="dark">
   <ion-grid class="grid">
     <ion-row>
-  <ion-item *ngFor="let item of items; trackBy:trackItems" lines="none" color="dark"class="item" id="Item"
+  <ion-item *ngFor="let item of items; " lines="none" color="dark"class="item" id="Item"
    (click)="selected(item.value)">
     <img src = {{item.value}} width = "50" height="50" class="foto" id="avatar" ><img>
    </ion-item>

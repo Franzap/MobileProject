@@ -38,6 +38,7 @@ export class PrenotazioniPage implements OnInit {
     public actionSheetCtrl:ActionSheetController) { }
 
   ngOnInit() {
+    //window.alert("init");
     this.initDateTime();
 
     this.Start();
@@ -140,12 +141,12 @@ export class PrenotazioniPage implements OnInit {
   Start() {
 
     
-    console.log(this.activeP);
-    
+   // console.log(this.activeP);
+   var t=  JSON.parse(localStorage.getItem('user') || '{}') ;
 
-    const uid = this.route.snapshot.queryParamMap.get('uid');
+   // const uid = this.route.snapshot.queryParamMap.get('uid');
 
-    this.usercommunication.getUserbyId(uid).subscribe(res => {
+    this.usercommunication.getUserbyId().subscribe(res => {
       this.user = res;
       this.activeP=[];
       this.pastP=[];

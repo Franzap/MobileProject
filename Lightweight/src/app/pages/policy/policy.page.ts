@@ -12,8 +12,4 @@ export class PolicyPage implements OnInit {
   ngOnInit() {
   }
 
-  prova(){
-    window.alert("ciao");
-  }
-
 }

@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IonTabButton, NavController } from '@ionic/angular';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/autenticazione.service';
 import { User } from 'src/app/model/user.model';
-import { Abbonamento } from 'src/app/model/abbonamento.model';
 import { UserService } from 'src/app/services/user.service';
-import { userInfo } from 'os';
 import { ToastController } from '@ionic/angular';
 
 
@@ -15,75 +11,42 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
+  //creo un utente con valori di default
+  public user: User = this.usercommunication.createEmptyUser();
 
-public uid:string="";
-public user:User= this.usercommunication.createEmptyUser();
- 
+  constructor(public usercommunication: UserService,
+    private toastController: ToastController,
+    public auth: AuthenticationService) { }
 
-  constructor(private router: Router, private route: ActivatedRoute ,
-    public usercommunication:UserService,private toastController: ToastController) { }
-
-  ngOnInit() {this.start()}
-
-  start(){
-    const uid =this.route.snapshot.queryParamMap.get('uid');
-    if(uid!=null){
-      this.uid=uid;
-      this.usercommunication.getUserbyId(uid).subscribe(res =>{
-        this.user = res;
-      });
-    }
+  async ngOnInit() {
+    this.initUser();
   }
-
-  vaiAbb(){
-    const params : NavigationExtras = {
-      queryParams: {
-        uid:this.uid,
-      
-      }
-  };
-  
-    this.router.navigate(['/tabs/abbonamento'],params);
-   }
-   NoAbb(){
+  //inizializzo user con gli attributi dell'Utente memorizzati nel DB
+  initUser() {
+    this.usercommunication.getUserbyId().subscribe(res => {
+      this.user = res;
+    });
+  }
+  //utilizzato cliccando sulla tab Abbonamento se l'Utente non ha un abbonamento
+  NoAbb() {
     this.presentToast();
-  
-    
-   
-  
-    }
-
-    async presentToast() {
-      const toast = await this.toastController.create({
-        message: 'Nessun abbonamento rilevato!',
-        duration: 3000,
-        position:'middle',
-        color: "danger",
-        
-        buttons: [
-          {
-            text: 'Annulla',
-            role: 'cancel'
-          }
-        ],
-      });
-  
-      await toast.present();
-    }
-
-    vaiPrenotazioni(){
-      const params : NavigationExtras = {
-        queryParams: {
-          uid:this.uid,
-        
-        }
-    };
-    this.router.navigate(['/tabs/prenotazioni'],params);
-    }
-
-
-
   }
-   
-  
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Nessun abbonamento rilevato!',
+      duration: 3000,
+      position: 'middle',
+      color: "danger",
+      buttons: [
+        {
+          text: 'Annulla',
+          role: 'cancel'
+        }
+      ],
+    });
+    await toast.present();
+  }
+}
+
+
 

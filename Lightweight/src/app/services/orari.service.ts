@@ -13,7 +13,6 @@ export class OrariService {
   constructor() { }
 
   getTimeTablesbyId(id : any) :Observable<Orari> {
-
     const firebaseApp = getApp();
     const db = getFirestore(firebaseApp);
     const userRef = doc(db, `orari/${id}`);
