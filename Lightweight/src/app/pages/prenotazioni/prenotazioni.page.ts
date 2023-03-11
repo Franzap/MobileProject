@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IonDatetime } from '@ionic/angular';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user.model';
-import { AuthenticationService } from 'src/app/services/autenticazione.service';
-
-import { Abbonamento } from 'src/app/model/abbonamento.model';
 import { UserService } from 'src/app/services/user.service';
 import { Timestamp } from 'firebase/firestore';
 import { ToastController } from '@ionic/angular';
-import { IonModal } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
-
-
 
 
 @Component({
@@ -20,153 +14,81 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['./prenotazioni.page.scss'],
 })
 export class PrenotazioniPage implements OnInit {
-
-  public activeP: Date[] = [];
-  public a: Date[] = [];//this.removeDuplicates(this.activeP);
-  public pastP: Date[] = [];
-  public isFirstP: boolean = true;
   public user: User = this.usercommunication.createEmptyUser();
-  public dateP: Date = new Date();
-  public startd: string = "0";
-  public endd: string = "0";
-  public start: string = "0";
-  public end: string = "0";
-
+  //prenotazioni attive
+  public activeP: Date[] = [];
+  //prenotazioni precedenti
+  public pastP: Date[] = [];
+  //true:prima prenotazione, false:no
+  public isFirstP: boolean = true;
+  //valori relativi alla prima e all'ultima data prenotabile 
+  public startDay: string = "0";
+  public endDay: string = "0";
+  public startMonth: string = "0";
+  public endMonth: string = "0";
+  public startYear: string = new Date().getFullYear().toString();
+  public endYear: string = new Date().getFullYear().toString();
+  //booleano che controlla apertura e chiusura dell'IOnModal
   public isModalOpen: boolean = false;
-  constructor(public route: ActivatedRoute, public usercommunication: UserService,
-    private toastController: ToastController, public router: Router,
-    public actionSheetCtrl:ActionSheetController) { }
+
+
+  constructor(public usercommunication: UserService,
+    private toastController: ToastController,
+    public router: Router,
+    public actionSheetCtrl: ActionSheetController) { }
 
   ngOnInit() {
-    //window.alert("init");
     this.initDateTime();
-
-    this.Start();
-
-
+    this.returnUserPrenotations();
   }
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
-    //this.usercommunication.updateUser(this.user);
-    //this.activeP=[];
-    //this.pastP=[];
-
-
-
-
-
   }
 
+  //conferma prenotazione
   async confirm(d: IonDatetime) {
-
     await d.confirm();
-
-
-
-
-
     if (d.value != null && d.value != undefined && typeof d.value == "string") {
-
-      // d.confirm();
       var a: Date = new Date(d.value);
-      this.dateP = a;
-      //this.presentToast("Risulta già una prenotazione per la data selezionata!", "danger");
       var myTimestamp = Timestamp.fromDate(a);
       var b = false;
-      // if(this.activeP.length >0)
       for (var p of this.activeP) {
         if ((p.getDate() == a.getDate() &&
           p.getMonth() == a.getMonth() &&
           p.getFullYear() == a.getFullYear())) {
           b = true;
-
         }
       }
-
       if (b == true) {
         this.presentToast("Risulta già una prenotazione per la data selezionata!", "danger");
       } else {
-        //this.setOpen(false);
         this.user.prenotazioni.push(myTimestamp);
-
         await this.usercommunication.updateUser(this.user);
         this.activeP = [];
         this.pastP = [];
-
-
-
-        //this.router.navigate(['/tabs/home']);
-
         this.presentToast("Prenotazione effettuata!", "success");
         this.setOpen(false);
-
-
-
       }
     }
   }
 
-
-
-  // window.alert(a.getDate());
-
-  removeDuplicates(inArray: Date[]) {
-    var arr = inArray.concat() // create a clone from inArray so not to change input array
-    //create the first cycle of the loop starting from element 0 or n
-    for (var i = 0; i < arr.length; ++i) {
-      //create the second cycle of the loop from element n+1
-      for (var j = i + 1; j < arr.length; ++j) {
-        //if the two elements are equal , then they are duplicate
-        if (arr[i] === arr[j]) {
-          arr.splice(j, 1); //remove the duplicated element 
-        }
-      }
-    }
-    return arr;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-  Start() {
-
-    
-   // console.log(this.activeP);
-   var t=  JSON.parse(localStorage.getItem('user') || '{}') ;
-
-   // const uid = this.route.snapshot.queryParamMap.get('uid');
-
+  //modifica le variabili definite sopra con i dati relativi alle prenotazioni dell'Utente
+  returnUserPrenotations() {
     this.usercommunication.getUserbyId().subscribe(res => {
       this.user = res;
-      this.activeP=[];
-      this.pastP=[];
-
+      this.activeP = [];
+      this.pastP = [];
       if (this.user.prenotazioni.length > 0) {
         this.isFirstP = false;
       } else { this.isFirstP = true; }
       for (var p of this.user.prenotazioni) {
         if (new Date() > p.toDate()) {
-
           this.pastP.push(p.toDate());
-
         } else {
-
           this.activeP.push(p.toDate());
-
         }
       }
-
-
     });
   }
 
@@ -176,7 +98,6 @@ export class PrenotazioniPage implements OnInit {
       duration: 3000,
       position: 'middle',
       color: color,
-
       buttons: [
         {
           text: 'Annulla',
@@ -184,10 +105,10 @@ export class PrenotazioniPage implements OnInit {
         }
       ],
     });
-
     await toast.present();
   }
 
+  //modifica i dati relativi alle date prenotabili in base al giorno corrente
   initDateTime() {
     var t = new Date().getMonth() + 1;
     var t1;
@@ -197,55 +118,50 @@ export class PrenotazioniPage implements OnInit {
     } else { t1 = t + 1; }
     var t3;
     if (t2 < 21) { t3 = t2 + 7 } else { t3 = 7; }
-    //var t3=new Date().getDate() +7 ;
-
-    this.start = this.start + t.toString();
-    this.end = this.end + t1.toString();
+    this.startMonth = this.startMonth + t.toString();
+    this.endMonth = this.endMonth + t1.toString();
     if (t2 < 10) {
-      this.startd = this.startd + t2.toString();
+      this.startDay = this.startDay + t2.toString();
     } else {
-      this.startd = t2.toString();
+      this.startDay = t2.toString();
     }
     if (t3 < 10) {
-      this.endd = this.endd + t3.toString();
+      this.endDay = this.endDay + t3.toString();
     } else {
-      this.endd = t3.toString();
+      this.endDay = t3.toString();
+    }
+    if (new Date().getMonth() == 11) {
+      var endYear = new Date().getFullYear() + 1;
+      this.endYear = endYear.toString();
     }
   }
 
- async remove(p:Date){
-//this.activeP.splice(this.activeP.indexOf(p),1);
-var temp = Timestamp.fromDate(p);
-
-
-var b=false;
-for(var t of this.user.prenotazioni ){
-  if(t.isEqual(temp)){
-    b=true;
-    temp=t;
-  }
-}
-if(b==true){
- 
-  this.user.prenotazioni.splice(this.user.prenotazioni.indexOf(temp),1);
-  await this.usercommunication.updateUser(this.user);}
- //else{window.alert("error");}
+  //rimuove una prenotazione
+  async remove(p: Date) {
+    var temp = Timestamp.fromDate(p);
+    var b = false;
+    for (var t of this.user.prenotazioni) {
+      if (t.isEqual(temp)) {
+        b = true;
+        temp = t;
+      }
+    }
+    if (b == true) {
+      this.user.prenotazioni.splice(this.user.prenotazioni.indexOf(temp), 1);
+      await this.usercommunication.updateUser(this.user);
+    }
   }
 
-  async presentActionSheet(p:Date) {
+  async presentActionSheet(p: Date) {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Vuoi disdire questa prenotazione?',
       cssClass: 'my-custom-class',
       buttons: [
-       
         {
           text: 'Okay',
-          handler: () =>{
+          handler: () => {
             this.remove(p);
             this.PresentToast();
-            
-            
-            
           }
         },
         {
@@ -257,7 +173,6 @@ if(b==true){
         },
       ],
     });
-  
     actionSheet.present();
   }
 
@@ -267,7 +182,6 @@ if(b==true){
       duration: 3000,
       position: 'middle',
       color: 'success',
-
       buttons: [
         {
           text: 'Annulla',
@@ -275,11 +189,6 @@ if(b==true){
         }
       ],
     });
-
     await toast.present();
-  }
-
-  prova(){
-    console.log("ciao");
   }
 }

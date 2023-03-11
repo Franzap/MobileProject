@@ -38,7 +38,7 @@
         <ion-select color="medium"
           
           placeholder="Select type"
-          (ionChange)="handleChange($event)"
+          (ionChange)="handleChangeType($event)"
           [(ngModel)] = "currentType"
         >
           <ion-select-option *ngFor="let type of types" [value]="type" color="medium" 
@@ -63,7 +63,7 @@
         <ion-select color="medium"
           
           placeholder="Select exercises"
-          (ionChange)="HandleChange($event)"
+          (ionChange)="handleChangeExercises($event)"
           [multiple]="true"
           
         >
