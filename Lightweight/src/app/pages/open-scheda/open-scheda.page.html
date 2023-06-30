@@ -1,68 +1,44 @@
 <ion-header>
   <ion-toolbar color = "dark" line="none">
-   
     <ion-buttons slot="start" >
-      <ion-back-button defaultHref="/tabs/home" >
-      </ion-back-button>
+      <ion-back-button defaultHref="/tabs/home" ></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="primary">
       <ion-button (click)="presentActionSheet()">
-        <ion-icon slot="icon-only" name="trash" color = "danger" ></ion-icon>
+        <ion-icon slot="icon-only" name="trash" class="trash" ></ion-icon>
       </ion-button>
     </ion-buttons>
     <!--<ion-title *ngIf ="i!=null;" color="dark">{{schede[i].nome}}</ion-title>-->
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf ="i!=null;"  color = "dark" >
-
-  <p *ngIf ="i!=null;" class="nome" >{{schede[i].nome}}</p>
+<ion-content *ngIf ="i!==null;"  color = "dark" >
+  <p *ngIf ="i!==null;" class="nome" >{{schede[i].nome}}</p>
   <p class = "tipologia">Tipologia : {{schede[i].tipologia}}</p>
   <img class="imgT" src = {{schede[i].immagine}}>
-
-
   <p class="esercizi"> Esercizi </p>
-
-
   <ion-grid class ="grid">
     <ion-card *ngFor="let exercise of currentEsercizi"  color="medium" class="card">
       <ion-card-header>
         <ion-card-title class="title">{{ exercise.nome }}</ion-card-title>
       </ion-card-header>
-        <img src= {{exercise.immagine}} class="imageEx" width = "65" height="30"(click)="setOpen(true , exercise)" >
-       
-        <ion-modal [isOpen]="isModalOpen">
+      <img src= {{exercise.immagine}} class="imageEx" (click)="setOpen(true , exercise)" >
+       <ion-modal [isOpen]="isModalOpen">
           <ng-template>
-            
-            <ion-content color="dark">
+          <ion-content color="dark">
               <p class="Title">{{currentTitle}}</p>
-              
-                <ion-icon name="close-circle" (click)="setOpen(false , exercise)" color="primary" class="close"
-                ></ion-icon>
-              
-              
-                
-
-                
-              
+              <ion-icon name="close-circle" (click)="setOpen(false , exercise)" color="primary" class="close">
+                </ion-icon>
               <img src= {{currentImage}} class="currentImage" width="275"  height="120" >
               <p class="currentDescrizione"> {{currentDescrizione}}</p>
             </ion-content>
           </ng-template>
         </ion-modal>
-
         <p class="p">N°serie {{ exercise.nSerie}} </p>
-          
-        
-     <p class="p"> N°ripetizioni  {{ exercise.nReps }}</p>
-
-     
-
-     </ion-card>
-  </ion-grid>
-
-  <ion-button (click)="modifica()" color="primary" expand="block" class="buttn">
-    modifica
-  </ion-button>
-
+         <p class="p"> N°ripetizioni  {{ exercise.nReps }}</p>
+        </ion-card>
+      </ion-grid>
+      <ion-button (click)="modifica()" color="primary" expand="block" class="buttn">
+        modifica
+      </ion-button>
 </ion-content>
