@@ -6,7 +6,7 @@
 
 
 
-<ion-content *ngIf="user.uid!='';else start"  color="dark" class = "body">
+<ion-content *ngIf="user.uid!=='';else start"  color="dark" class = "body">
   <section class="profile_nav">
     <div class="profile_nav_sub profile_image">
       <img src={{user.image}} routerLink="/profile" id="profile_picture"><img>
@@ -56,7 +56,7 @@
         <p>Nessun Abbonamento</p>
       </ng-template>
       
-      <div *ngIf ="user.abbonamento.stato == true; then abbonamento_presente else abbonamento_assente " class="stato_informazioni background_warn">
+      <div *ngIf ="user.abbonamento.stato === true; then abbonamento_presente else abbonamento_assente " class="stato_informazioni background_warn">
       </div>
     </ng-template>
   </section>
