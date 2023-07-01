@@ -14,7 +14,7 @@ ion-datetime {
 
 .item{
   margin-top: 30px;
-  height: 200px;
+  height: auto;
    
 }
   .calendar{
@@ -42,6 +42,7 @@ ion-item{
 }
 .section{
     font-size: smaller;
+    height: auto;
 }
 .option{
   margin-top: 3px;
