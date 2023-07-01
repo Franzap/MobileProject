@@ -1,6 +1,6 @@
 .p{
     font-size: small;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 .item{
     border-radius: 5px;
@@ -99,6 +99,7 @@ ion-range {
     width: 25px;
     height: 25px;
     margin-left: 5px;
+    color: black;
   }
 
   .save{
@@ -112,12 +113,16 @@ ion-range {
   .trash{
     position:absolute;
     margin-left:240px;
-   height: 30px;
-   width: 30px;
-  margin-top: -29.5px;
-  z-index: 3;
+    height: 30px;
+    width: 30px;
+    margin-top: -29.5px;
+    z-index: 3;
+    color: red;
   }
 
   .titleM{
-    font-size: smaller;
+    font-size: medium;
+    position:absolute;
+    margin-top: -10px;
+    color: black;
   }

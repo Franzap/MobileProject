@@ -22,7 +22,19 @@
      <!---- <ion-icon name="chevron-forward" color ="primary" routerLink="/select-image" slot="end"></ion-icon>-->
     </ion-item>
 
+<<<<<<< HEAD
   
+=======
+  <ion-item color="medium">
+    <ion-label position="stacked">Change Username</ion-label>
+    <ion-input placeholder={{user.displayName}} [(ngModel)] = "newUsername"></ion-input>
+    
+  </ion-item>
+
+  <ion-button *ngIf = "newUsername !=='' ; " color="primary"  expand ="block"  class ="save" (click)="save()">
+    Change 
+  </ion-button>
+>>>>>>> d8b0f92bf8ef63476c2e05bb05df031d70fda9e8
 
   <ion-button (click)="logout()" > logout</ion-button>
 </ion-content>
