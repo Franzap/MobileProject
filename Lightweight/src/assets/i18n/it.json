@@ -1,0 +1,19 @@
+{
+    
+    "home_page":{  
+
+    "opening" : "Apertura alle",
+    "closure" : "Chiude alle", 
+    "welcome" : "Benvenuto",
+    "subscription_terminated" : "Abbonamento Scaduto",
+    "subscription_pt1" : "Scadenza abbonamento tra",
+    "subscription_pt2" : "giorni",
+    "startForms" : "Crea una nuiva scheda",
+    "forms" : "Schede allenamento",
+    "newForm" : "Nuova Scheda"}
+
+    
+    
+
+
+}
