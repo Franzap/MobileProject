@@ -41,7 +41,7 @@
       </ng-template>
     </ion-modal>
     <ion-item-group *ngIf="activeP.length > 0">
-      <ion-item-divider color="medium" class="divider">
+      <ion-item-divider color="dark" class="divider">
         <ion-label class="section">
           Prenotazioni attive
         </ion-label>
@@ -58,9 +58,7 @@
         </ion-item>
         <ion-item-options line="none">
           <ion-item-option (click)="presentActionSheet(p)" color="danger" expandable class="option">
-            <ion-icon slot="end" name="trash"></ion-icon>
-            Delete
-          </ion-item-option>
+            <ion-icon slot="end" name="trash"></ion-icon>Delete</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
     </ion-item-group>
