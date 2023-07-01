@@ -53,7 +53,7 @@ export class SelectImagePage implements OnInit {
   }
 
   initUser() {
-    this.communicationService.getUserbyId().subscribe(res => {
+    this.communicationService.getUser().subscribe(res => {
       this.user = res;
     });
   }

@@ -1,6 +1,6 @@
 .image {
     
-    margin-left: 20px; 
+   // margin-left: 10px; 
     //position:absolute;
     margin-top:  10px;
     border-radius:999em;   
@@ -25,3 +25,7 @@
     margin-right: 70px;
 
 }
+
+hr.dotted {
+    border-top: 2px dotted #bbb;
+  }

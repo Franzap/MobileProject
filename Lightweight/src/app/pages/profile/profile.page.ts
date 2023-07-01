@@ -21,13 +21,13 @@ export class ProfilePage implements OnInit {
   }
 
   initUser() {
-    this.usercommunication.getUserbyId().subscribe(res => {
+    this.usercommunication.getUser().subscribe(res => {
       this.user = res;
     });
   }
 
   save() {
-    if (this.newUsername != "") {
+    if (this.newUsername !== this.user.displayName) {
       this.user.displayName = this.newUsername;
     }
     this.usercommunication.updateUser(this.user);

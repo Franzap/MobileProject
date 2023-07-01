@@ -20,8 +20,8 @@ export class LoginPage implements OnInit {
     }
   }
   
-  async Login() {
-    await this.authentication.SignIn(this.email, this.password);
+  Login() {
+     this.authentication.SignIn(this.email, this.password);
   } 
 
   SignUp() {

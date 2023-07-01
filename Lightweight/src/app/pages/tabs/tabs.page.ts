@@ -23,7 +23,7 @@ export class TabsPage implements OnInit {
   }
   //inizializzo user con gli attributi dell'Utente memorizzati nel DB
   initUser() {
-    this.usercommunication.getUserbyId().subscribe(res => {
+    this.usercommunication.getUser().subscribe(res => {
       this.user = res;
     });
   }

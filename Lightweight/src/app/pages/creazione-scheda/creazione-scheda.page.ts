@@ -83,7 +83,7 @@ export class CreazioneSchedaPage implements OnInit {
   //modifica tutte le variabili relative alla scheda selezionata con i valori adeguati presi dal DB
   returnUserScheda() {
     const index = this.route.snapshot.queryParamMap.get('index');
-    this.usercommunication.getUserbyId().subscribe(res => {
+    this.usercommunication.getUser().subscribe(res => {
       this.user = res;
       if (index != null) {
         this.currentIndex = +index;

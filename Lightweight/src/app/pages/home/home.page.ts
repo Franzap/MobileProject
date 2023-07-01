@@ -17,7 +17,6 @@ import { Scheda } from 'src/app/model/scheda.model';
 })
 export class HomePage implements OnInit {
   //riferimenti ai valori dell'utente e alla "palestra" da mostrare 
-
   public user: User = this.usercommunication.createEmptyUser();
 
   //palestra aperta:true o chiusa:false
@@ -44,7 +43,7 @@ export class HomePage implements OnInit {
   }
 
   initUser() {
-    this.usercommunication.getUserbyId().subscribe(res => {
+    this.usercommunication.getUser().subscribe(res => {
       this.user = res;
       this.isAbbonato()
     });

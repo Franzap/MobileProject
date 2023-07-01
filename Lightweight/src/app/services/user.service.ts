@@ -13,7 +13,7 @@ export class UserService {
 
   constructor() { }
 
-  getUserbyId(): Observable<User> {
+  getUser(): Observable<User> {
     var t = JSON.parse(localStorage.getItem('user') || '{}').uid;
     const firebaseApp = getApp();
     const db = getFirestore(firebaseApp);

@@ -75,7 +75,7 @@ export class PrenotazioniPage implements OnInit {
 
   //modifica le variabili definite sopra con i dati relativi alle prenotazioni dell'Utente
   returnUserPrenotations() {
-    this.usercommunication.getUserbyId().subscribe(res => {
+    this.usercommunication.getUser().subscribe(res => {
       this.user = res;
       this.activeP = [];
       this.pastP = [];

@@ -28,7 +28,7 @@ export class AbbonamentoPage implements OnInit {
 
   //modifica le variabili inizializzate sopra con i valori relativi all'abbonamento dell'Utente
   checkSubscriptionStatus() {
-    this.usercommunication.getUserbyId().subscribe(res => {
+    this.usercommunication.getUser().subscribe(res => {
       this.user = res;
       if (this.user.abbonamento.dataPrimoAbbonamento != null) {
         this.startDate = this.user.abbonamento.dataPrimoAbbonamento.toDate();

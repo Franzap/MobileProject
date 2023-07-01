@@ -40,7 +40,7 @@ export class OpenSchedaPage implements OnInit {
   //modifica le variabili inizializzate sopra con i valori relativi alla scheda selezionata
   returnUserForm() {
     const index = this.route.snapshot.queryParamMap.get('index');
-    this.usercommunication.getUserbyId().subscribe(res => {
+    this.usercommunication.getUser().subscribe(res => {
       this.user = res;
       this.schede = res.schede;
       if (index != null) {
