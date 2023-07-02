@@ -6,7 +6,7 @@
     </ion-buttons>
     <ion-title color="dark" [translate]="'profile.title'" ></ion-title>
     <ion-buttons slot="end">
-      <ion-button *ngIf = "newUsername != user.displayName ; " color="dark" (click)="save()">Done</ion-button>
+      <ion-button *ngIf = "newUsername !== user.displayName ; " color="dark" (click)="save()">Done</ion-button>
     </ion-buttons>
   
   </ion-toolbar>
@@ -14,16 +14,17 @@
 <ion-content color="dark">
 
   <ion-item  height="200" class="item" color="medium" >
-    <div>
+    <div class="div">
        <img src ={{user.image}}  width = "60" height="60" class="image"routerLink="/select-image" >
-       <hr class="dotted">
+       <hr align="left" size="1" width="600" color="white" />
        <ion-input value={{user.displayName}} [(ngModel)] = "newUsername"></ion-input>
+       <hr align="left" size="1" width="600" color="white" />
       </div>
      <!---- <ion-icon name="chevron-forward" color ="primary" routerLink="/select-image" slot="end"></ion-icon>-->
     </ion-item>
 
   
 
-  <ion-button (click)="logout()" > logout</ion-button>
+  <ion-button (click)="logout()" class="logout" > logout</ion-button>
 </ion-content>
 
