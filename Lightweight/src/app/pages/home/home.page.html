@@ -12,7 +12,7 @@
       <img src={{user.image}} routerLink="/profile" id="profile_picture"><img>
     </div>
     <div class="profile_nav_sub profile_section profile_text">
-      <p><small>Benvenuto</small><br>{{user.displayName}}</p>
+      <p ><small [translate]="'home_page.welcome'"></small><br>{{user.displayName}}</p>
     </div>
     <div class="profile_nav_sub profile_section">
       <ion-icon name="notifications-outline" class="profile_icon" routerLink="/notifications"></ion-icon>
@@ -23,13 +23,13 @@
   <section>
     <ng-template #open>
       <div class="stato_informazioni background_success">
-        <p>Chiusura alle {{stringChiusura}}</p>
+        <p [translate]="'home_page.closure'" [translateParams]="{value:stringChiusura}"  ></p>
       </div>
     </ng-template>
 
     <ng-template #closed>
       <div class="stato_informazioni background_warn">
-        <p>Apertura alle {{stringApertura}}</p>
+        <p [translate]="'home_page.opening'"  [translateParams]= "{value:stringApertura}"></p>
       </div>
     </ng-template>
 
@@ -44,12 +44,12 @@
 
     <ng-template #abbonato>
       <div class="stato_informazioni background_success">
-        <p>Scadenza abbonamento tra {{giorniAbbonamentoRimasti}} giorni</p>
+        <p [translate]="'home_page.subscription_pt1'" [translateParams]="{value:giorniAbbonamentoRimasti}"> </p>
       </div>
     </ng-template>
     <ng-template #scaduto>
       <ng-template #abbonamento_presente>
-        <p>Abbonamento Scaduto</p>
+        <p [translate]="'home_page.subscription_terminated'"></p>
       </ng-template>
 
       <ng-template #abbonamento_assente>
@@ -62,7 +62,7 @@
   </section>
    
   <div *ngIf="user.schede.length > 0; else crea">
-    <p >Schede allenamento</p>
+    <p [translate]="'home_page.forms'"></p>
 
     <ion-slides pager="true">
 
@@ -81,7 +81,7 @@
       <ion-slide>
         <ion-card color="medium" class="scheda">
           <ion-card-header>
-            <ion-card-title class="schedaTitle">Nuova scheda</ion-card-title>
+            <ion-card-title class="schedaTitle" [translate]="'home_page.newForm'"></ion-card-title>
 
           </ion-card-header>
           <ion-card-content>
@@ -104,8 +104,8 @@
 
   <ng-template #crea>
     
-    <p class="schede">
-      Crea una nuova scheda
+    <p class="schede" [translate]="'home_page.startForms'">
+      
     </p>
 
     <div class="div">

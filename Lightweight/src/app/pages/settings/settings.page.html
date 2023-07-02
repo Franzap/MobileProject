@@ -13,8 +13,18 @@
     <ion-label>Notifiche</ion-label>
     <ion-toggle slot="end" color="success"></ion-toggle>
   </ion-item>
-  <p class="p">Il consenso alle notifiche ci permette
-     di tenerti costantemente aggiornato</p>
+  <p class="p" [translate]="'settings.notificationsDescription' " > </p>
+  
+
+
+     <ion-item>
+      <ion-select [(ngModel)]="language" [value]="language" (ionChange)="changeLanguage()">
+        <ion-select-option value="en">English</ion-select-option>
+        <ion-select-option value="it">Italian</ion-select-option>
+        
+      </ion-select>
+    </ion-item>
+
 
      <ion-item   color="medium" >
      <ion-label> Policy</ion-label>

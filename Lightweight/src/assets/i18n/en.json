@@ -1,0 +1,74 @@
+{
+    "a":"b",
+    "home_page":{  
+
+    "opening" : "Opens at {{value}}",
+    "closure" : "Closes at {{value}}", 
+    "welcome" : "Welcome ",
+    "subscription_terminated" : "Subscription expired",
+    "subscription_pt1" : "expires in {{value}} days",
+    "subscription_pt2" : "days",
+    "startForms" : "Create a new card",
+    "forms" : "Training cards",
+    "newForm" : "New card"},
+
+    "reservations" : {
+        "title" : "Reservations", 
+        "start" : "Book a new reservation", 
+        "active" : "Active reservations ",
+        "expired" : "Expired reservations",
+        "book" : "Book"
+
+       },
+    
+       "subscription" : {
+        "title" : "Subscription",
+        "start" : "Subscribed on {{value}}",
+        "expiration" : "Expires on {{value}}",
+        "pastExpiration" : "Expired on {{value}}" ,
+        "insuranceTrue" : "Insurance delivered", 
+        "insuranceFalse" : "Deliver insurance",
+        "medicalTrue": "Medical certificate delivered",
+        "medicalFalse" : "Deliver medical certificate"
+       },
+        
+       "tabs" : {
+        "home" : "Home",
+        "reservations" : "Reservations", 
+        "subscription" : "Subscription"
+       },
+
+       "profile" : {
+        "title":"Profile"
+        
+       },
+
+       "settings" : {
+        "title" : "Settings", 
+        "notifications": "Notifications",
+        "notificationsDescription" : "Consent to notifications allows us to keep you constantly updated"
+        
+       },
+
+       "cards" : {
+        "newCard" : "New card",
+        "selectName" : "Insert card name",
+        "selectCategory" : "Select card typology", 
+        "selectExercises" : "Select exercises",
+        "save" : "Save",
+        "categories" : {
+            "strength" : "Strength",
+            "explosiveness" : "Explosiveness",
+            "slimming" : "Slimming"
+
+        },
+        "typology" : "Typology",
+        "exercises" : "Exercises",
+        "set" : "Sets",
+        "reps" : "Reps",
+        "edit" : "Edit"
+
+       }
+
+    
+}

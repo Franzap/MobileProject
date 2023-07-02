@@ -5,20 +5,20 @@
       </ion-icon> 
     </ion-buttons>
     <ng-template #modifica>
-      <ion-title class = "titleM"> Modifica Scheda</ion-title>
+      <ion-title class = "titleM" [translate] = "'cards.edit'"></ion-title>
     </ng-template>
-    <ion-title *ngIf="isModifica === false; else modifica"  class="titleM" >Nuova scheda</ion-title>
+    <ion-title *ngIf="isModifica === false; else modifica"  class="titleM" [translate] = "'cards.newCard'" ></ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content color="dark">
-<p class="p">
-  Inserisci nome scheda
+<p class="p" [translate] = "'cards.selectName'">
+  
 </p>
 <ion-item color="medium"class="nome">
     <ion-input placeholder="example" [(ngModel)] = "title">
     </ion-input>
   </ion-item>
-  <p class="p">Seleziona tipologia scheda</p>
+  <p class="p" [translate] = "'cards.selectCategory'"></p>
   <ion-item color="medium">
         <ion-select color="medium" placeholder="Select type" (ionChange)="handleChangeType($event)" [(ngModel)] = "currentType">
           <ion-select-option *ngFor="let type of types" [value]="type" color="medium" 
@@ -28,12 +28,12 @@
       <ng-template #noImg></ng-template>
       </ion-item>
       <ng-template #aggiungi>
-        <p class="p">
-          Aggiungi esercizi
+        <p class="p" [translate] = "'cards.selectExercises'"> <!--addExercises-->
+          <!--Aggiungi esercizi-->
         </p>
       </ng-template>
-      <p *ngIf="isModifica===false;else aggiungi"  class="p">
-        Seleziona esercizi
+      <p *ngIf="isModifica===false;else aggiungi"  class="p" [translate] = "'cards.selectExercises'">
+     
       </p>
       <ion-item color="medium">
         <ion-select color="medium" placeholder="Select exercises" (ionChange)="handleChangeExercises($event)" [multiple]="true">
@@ -80,7 +80,7 @@
             </ion-card>
         </ion-grid>
       </div>
-      <ion-button color="primary" class="save" expand = "block" (click)="save()">
-      Salva
+      <ion-button color="primary" class="save" expand = "block" (click)="save()" [translate] = "'cards.save'">
+      
      </ion-button>
 </ion-content>

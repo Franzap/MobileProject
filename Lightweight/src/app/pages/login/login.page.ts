@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
 //se l'Utente è già registrato entra direttamente nell'Home Page
   ngOnInit() {
     if (localStorage.getItem('user') != null) {
+      //window.location.reload();
       this.router.navigate(['/tabs/home']);
     }
   }
