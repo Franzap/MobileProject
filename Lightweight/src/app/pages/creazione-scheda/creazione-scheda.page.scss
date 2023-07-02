@@ -2,17 +2,23 @@
     font-size: small;
     margin-left: 15px;
 }
+.p1{
+  font-size: small;
+  margin-left: 15px;
+  margin-bottom: -10px;
+  margin-top: 20px;
+}
 .item{
     border-radius: 5px;
     margin-left: 10px;
     margin-right: 10px;
 }
 .image{
-    position:absolute;
-    margin-left: 220px;
-    border-radius:999em;   
--moz-border-radius:999em; 
--webkit-border-radius:999em;
+  position:absolute;
+  margin-left: 220px;
+  border-radius:999em;   
+  -moz-border-radius:999em; 
+  -webkit-border-radius:999em;
   -o-border-radius: 999em;   
 }
 .grid{
@@ -24,11 +30,11 @@
     margin-top: -10px;
 }
 .imageEx{
-    position:absolute;
-    margin-left:170px;
-    border-radius:999em;   
--moz-border-radius:999em; 
--webkit-border-radius:999em;
+  position:absolute;
+  margin-left:170px;
+  border-radius:999em;   
+  -moz-border-radius:999em; 
+  -webkit-border-radius:999em;
   -o-border-radius: 999em; 
   margin-top: -29.5px;
   z-index: 3;
@@ -49,7 +55,6 @@ ion-range {
     position: absolute;
     margin-left: -10px;
     margin-right: 5px;
-    margin-top: 3px;
     z-index: 2;
   }
   .Item{

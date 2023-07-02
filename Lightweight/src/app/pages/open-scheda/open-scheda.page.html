@@ -19,7 +19,7 @@
   <p class="esercizi"> Esercizi </p>
   <ion-grid class ="grid">
     <ion-card *ngFor="let exercise of currentEsercizi"  color="medium" class="card">
-      <ion-card-header>
+      <ion-card-header class="immagex">
         <ion-card-title class="title">{{ exercise.nome }}</ion-card-title>
       </ion-card-header>
       <img src= {{exercise.immagine}} class="imageEx" (click)="setOpen(true , exercise)" >
