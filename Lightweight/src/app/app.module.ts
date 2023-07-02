@@ -9,6 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+
 
 
 import { AngularFireModule} from '@angular/fire/compat';
@@ -18,7 +23,9 @@ import { initializeApp } from "firebase/app";
 
 import { getAnalytics } from "firebase/analytics";
 
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+  }
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +34,14 @@ import { getAnalytics } from "firebase/analytics";
     ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

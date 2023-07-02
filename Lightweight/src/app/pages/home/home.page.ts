@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/autenticazione.service';
 import { User } from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -7,6 +7,8 @@ import { OrariService } from 'src/app/services/orari.service';
 import { EserciziService } from 'src/app/services/esercizi.service';
 import { ActionSheetController } from '@ionic/angular';
 import { Scheda } from 'src/app/model/scheda.model';
+import { TranslateService } from '@ngx-translate/core';
+
 
 
 
@@ -16,7 +18,10 @@ import { Scheda } from 'src/app/model/scheda.model';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+
+  public language: string = "";
   //riferimenti ai valori dell'utente e alla "palestra" da mostrare 
+  
   public user: User = this.usercommunication.createEmptyUser();
 
   //palestra aperta:true o chiusa:false
@@ -32,14 +37,28 @@ export class HomePage implements OnInit {
   constructor(private router: Router,
     public usercommunication: UserService, public timecommunication: OrariService,
     public exercisecommunication: EserciziService, private actionSheetCtrl: ActionSheetController,
-    public auth: AuthenticationService) { }
+    public auth: AuthenticationService,  private _translate: TranslateService,
+    private activatedRoute: ActivatedRoute) { }
 
 
   //recupera dal DB i valori relativi all'utente e alla palestra e inizializza con quei valori le variabili 
   //locali definite sopra
   ngOnInit() {
+   // window.alert("home");
+   this.activatedRoute.params.subscribe(() => {
     this.initUser();
     this.setTimeTables();
+    var savedLanguage = localStorage.getItem("language");
+    if(savedLanguage!=null) {
+      this.language = savedLanguage;
+    }else{
+      this.language = "en";
+    }
+  });
+    
+    
+    
+    
   }
 
   initUser() {
@@ -132,7 +151,44 @@ export class HomePage implements OnInit {
     };
     this.router.navigate(['/open-scheda'], params);
   }
+
+
+
+
+  ionViewDidEnter() : void{
+   
+    
+    this._translateLanguage();
+  }
+
+   _initialiseTranslation(): void {
+
+   
+     this._translate.get('home_page.opening').subscribe((res:string) =>{
+     //this.stringApertura = res;
+    
+    
+    });
+    
+    
+    
+   
+  }
+
+ /* public changeLanguage(): void {
+    this._translateLanguage();
+  }*/
+
+  _translateLanguage(): void {
+    this._translate.use(this.language);
+    this._initialiseTranslation();
+  }
+ 
+
+
 }
+
+
 
 
 

@@ -1,22 +1,22 @@
 <ion-content color="dark">
   <ng-template #firstP>
-    <p class="text">Prenota il tuo primo accesso</p>
+    <p class="text" [translate]="'reservations.start'"></p>
     <ion-datetime #datetime color="primary" [firstDayOfWeek]="1"
       [hourValues]="[6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" max="{{endYear}}-{{endMonth}}-{{endDay}}T20:00:00"
       min="{{startYear}}-{{startMonth}}-{{startDay}}T20:00:00" minuteValues="0,30">
       <ion-buttons slot="buttons">
         <ion-button color="danger" (click)="datetime.reset()">Reset</ion-button>
-        <ion-button color="dark" (click)="confirm(datetime)">Conferma</ion-button>
+        <ion-button color="dark" (click)="confirm(datetime)">Confirm</ion-button>
       </ion-buttons>
     </ion-datetime>
   </ng-template>
   <div *ngIf="isFirstP === false; else firstP">
-    <p class="text">Prenotazioni</p>
+    <p class="text" [translate]="'reservations.title'" ></p>
     <ion-item class="item" color="medium">
       <div>
         <ion-icon name="calendar" color="primary" class="calendar" (click)="setOpen(true )"></ion-icon>
       </div>
-      <p class="P">Prenota un accesso</p>
+      <p class="P" [translate]="'reservations.start'"></p>
     </ion-item>
     <ion-modal [isOpen]="isModalOpen">
       <ng-template>
@@ -25,7 +25,7 @@
             <ion-buttons slot="start">
               <ion-button (click)="setOpen(false)" color="dark">Cancel</ion-button>
             </ion-buttons>
-            <ion-title color="dark">Prenota</ion-title>
+            <ion-title color="dark" [translate]="'reservations.book'" ></ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content color="dark">
@@ -34,7 +34,7 @@
             min="{{startYear}}-{{startMonth}}-{{startDay}}T20:00:00" minuteValues="0,30">
             <ion-buttons slot="buttons">
               <ion-button color="danger" (click)="datetime.reset()">Reset</ion-button>
-              <ion-button color="dark" (click)="confirm(datetime)">Conferma</ion-button>
+              <ion-button color="dark" (click)="confirm(datetime)">Confirm</ion-button>
             </ion-buttons>
           </ion-datetime>
         </ion-content>
@@ -42,8 +42,8 @@
     </ion-modal>
     <ion-item-group *ngIf="activeP.length > 0">
       <ion-item-divider color="dark" class="divider">
-        <ion-label class="section">
-          Prenotazioni attive
+        <ion-label class="section" [translate]="'reservations.active'">
+         
         </ion-label>
       </ion-item-divider>
       <ion-item-sliding *ngFor="let p of activeP">
@@ -64,8 +64,8 @@
     </ion-item-group>
     <ion-item-group *ngIf="pastP.length > 0;">
       <ion-item-divider color="medium" class="divider">
-        <ion-label class="section">
-          Prenotazioni precedenti
+        <ion-label class="section" [translate]="'reservations.expired'">
+        
         </ion-label>
       </ion-item-divider>
       <ion-item *ngFor="let p of pastP" color="warning" class="success">

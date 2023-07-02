@@ -1,16 +1,74 @@
 {
-    
+    "a":"c",
     "home_page":{  
 
-    "opening" : "Apertura alle",
-    "closure" : "Chiude alle", 
-    "welcome" : "Benvenuto",
+    "opening" : "Apertura alle {{value}}",
+    "closure" : "Chiude alle {{value}}", 
+    "welcome" : "Benvenuto ",
     "subscription_terminated" : "Abbonamento Scaduto",
-    "subscription_pt1" : "Scadenza abbonamento tra",
+    "subscription_pt1" : "Scadenza abbonamento tra {{value}} giorni",
     "subscription_pt2" : "giorni",
-    "startForms" : "Crea una nuiva scheda",
+    "startForms" : "Crea una nuova scheda",
     "forms" : "Schede allenamento",
-    "newForm" : "Nuova Scheda"}
+    "newForm" : "Nuova Scheda"},
+
+    "reservations" : {
+        "title" : "Prenotazioni", 
+        "start" : "Prenota un accesso", 
+        "active" : "Prenotazioni attive",
+        "expired" : "Prenotazioni precedenti",
+        "book" : "Prenota"
+
+       },
+    
+       "subscription" : {
+        "title" : "Abbonamento",
+        "start" : "Abbonato dal {{value}}",
+        "expiration" : "Scade il {{value}}",
+        "pastExpiration" : "Scaduto il {{value}}" ,
+        "insuranceTrue" : "Assicurazione consegnata", 
+        "insuranceFalse" : "Consegnare assicurazione",
+        "medicalTrue": "Certificato medico consegnato",
+        "medicalFalse" : "Consegnare certificato medico"
+       },
+        
+       "tabs" : {
+        "home" : "Home",
+        "reservations" : "Prenotazioni", 
+        "subscription" : "Abbonamento"
+       },
+
+       "profile" : {
+        "title":"Profilo"
+        
+       },
+
+       "settings" : {
+        "title" : "Impostazioni", 
+        "notifications": "Notifiche",
+        "notificationsDescription" : "Il consenso alle notifiche ci permette di tenerti costantamente aggiornato"
+        
+       },
+
+       "cards" : {
+        "newCard" : "Nuova scheda",
+        "selectName" : "Inserisci nome scheda",
+        "selectCategory" : "Seleziona tipologia scheda", 
+        "selectExercises" : "Seleziona esercizi",
+        "save" : "Salva",
+        "categories" : {
+            "strength" : "Forza",
+            "explosiveness" : "Esplosività",
+            "slimming" : "Dimagrimento"
+
+        },
+        "typology" : "Tipologia",
+        "exercises" : "Esercizi",
+        "set" : "Serie",
+        "reps" : "Ripetizioni",
+        "edit" : "Modifica"
+
+       }
 
     
     
