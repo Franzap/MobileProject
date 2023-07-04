@@ -20,7 +20,7 @@ export class AbbonamentoPage implements OnInit {
 
 
 
-  constructor(public usercommunication: UserService) { }
+  constructor(private usercommunication: UserService) { }
 
   ngOnInit() {
     this.checkSubscriptionStatus();

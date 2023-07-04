@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/autenticazione.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { AuthenticationService } from 'src/app/services/autenticazione.service';
 export class LoginPage implements OnInit {
   public email: any;
   public password: any;
-  constructor(public authentication: AuthenticationService,
+  public ionicForm: FormGroup;
+  constructor(private authentication: AuthenticationService,
     private router: Router) { }
 //se l'Utente è già registrato entra direttamente nell'Home Page
   ngOnInit() {
@@ -19,10 +21,13 @@ export class LoginPage implements OnInit {
       //window.location.reload();
       this.router.navigate(['/tabs/home']);
     }
+   
   }
   
   Login() {
+   
      this.authentication.SignIn(this.email, this.password);
+   
   } 
 
   SignUp() {

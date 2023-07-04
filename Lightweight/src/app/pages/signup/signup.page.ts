@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'; 
+
 import { AuthenticationService } from 'src/app/services/autenticazione.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user.model';
 import {Firestore, collection, addDoc,getFirestore} from '@firebase/firestore';
 import { getApp } from '@firebase/app';
@@ -20,17 +22,37 @@ export class SignupPage implements OnInit {
   public username:any; 
   public email:any;
   public password:any;
+  public ionicForm: FormGroup;
   
   
   
   
- constructor(public authentication : AuthenticationService) { }
+ constructor(private authentication : AuthenticationService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.ionicForm = this.formBuilder.group({
+      username : ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+        ],
+      ]
+      
+    });
+  }
+  get errorControl() {
+    return this.ionicForm.controls;
   }
 
   onSignUp() {
+    if (this.ionicForm.valid){
     this.authentication.SignUp(this.email, this.password,this.username);
+    }else {
+      return console.log('Please provide all the required values!');
+    }
     //this.fireService.SignIn(this.email,this.password);
     //this.addUser();
     

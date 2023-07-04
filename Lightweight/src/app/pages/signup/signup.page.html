@@ -6,27 +6,77 @@
 
 <ion-content color="dark">
 
+  <form [formGroup]="ionicForm" (ngSubmit)="onSignUp()" novalidate>
+
   <ion-item  color ="medium" class="username">
     
-    <ion-input id="username" placeholder ="Inserisci Username" type="text"
+    <ion-input id="username" placeholder ="Inserisci Username" type="text" formControlName="username"
     [(ngModel)] = "username" ></ion-input>
   </ion-item>
 
+  <div
+  *ngIf="ionicForm.controls['username'].touched && ionicForm.controls['username'].invalid"
+>
+ <div
+   class="error"
+    *ngIf="errorControl['username'].errors?.['required'] "
+  >
+    <ion-text color="danger">Username is required.</ion-text>
+  </div>
+  
+  <div  *ngIf="errorControl['username'].errors?.['minlength']" class="error">
+    <ion-text color="danger">Username should be at least 5 characters.</ion-text>
+  </div>
+</div>
+
   <ion-item  color ="medium" class="email">
     
-    <ion-input id="email" type="email" placeholder ="Inserisci Email"
+    <ion-input id="email" type="email" placeholder ="Inserisci Email"  formControlName="email"
     [(ngModel)] = "email"  ></ion-input>
   </ion-item>
 
+  <div
+  *ngIf="ionicForm.controls['email'].touched && ionicForm.controls['email'].invalid"
+>
+ <div
+ class="error"
+    *ngIf="errorControl['email'].errors?.['required'] "
+  >
+    <ion-text color="danger">Email is required.</ion-text>
+  </div>
+  
+  <div  *ngIf="errorControl['email'].errors?.['pattern']" class="error">
+    <ion-text color="danger">Please provide valid email.</ion-text>
+  </div>
+</div>
+
+
   <ion-item  color ="medium" class="password">
     
-    <ion-input  id ="password" type="password" placeholder ="Inserisci Password"
+    <ion-input  id ="password" type="password" placeholder ="Inserisci Password" formControlName="password"
     [(ngModel)] = "password"  ></ion-input>
   </ion-item>
 
-  <ion-button color = "primary" expand ="block" class="Sign_up" (click) = "onSignUp()" >
+  <div
+  *ngIf="ionicForm.controls['password'].touched && ionicForm.controls['password'].invalid"
+>
+ <div 
+ class="error"
+    *ngIf="errorControl['password'].errors?.['required'] "
+  >
+    <ion-text color="danger">Password is required.</ion-text>
+  </div>
+  
+  <div  *ngIf="errorControl['password'].errors?.['minlength']" class="error">
+    <ion-text color="danger">Password should be at least 8 characters.</ion-text>
+  </div>
+</div>
+
+  <ion-button color = "primary" expand ="block" class="Sign_up" type="submit"  >
     Sign up
   </ion-button>
+
+</form>
 
   
 

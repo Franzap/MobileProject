@@ -14,9 +14,9 @@ export class TabsPage implements OnInit {
   //creo un utente con valori di default
   public user: User = this.usercommunication.createEmptyUser();
 
-  constructor(public usercommunication: UserService,
+  constructor(private usercommunication: UserService,
     private toastController: ToastController,
-    public auth: AuthenticationService) { }
+    private auth: AuthenticationService) { }
 
   async ngOnInit() {
     this.initUser();

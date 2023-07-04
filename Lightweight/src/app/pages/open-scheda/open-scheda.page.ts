@@ -27,9 +27,9 @@ export class OpenSchedaPage implements OnInit {
   //esercizi presenti nella scheda selezionata
   public currentEsercizi: Esercizio[] = [];
 
-  constructor(public route: ActivatedRoute,
-    public usercommunication: UserService,
-    public router: Router,
+  constructor(private route: ActivatedRoute,
+    private usercommunication: UserService,
+    private router: Router,
     private actionSheetCtrl: ActionSheetController,
     private toastController: ToastController
   ) { }

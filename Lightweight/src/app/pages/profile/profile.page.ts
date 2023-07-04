@@ -13,8 +13,8 @@ export class ProfilePage implements OnInit {
   public newUsername: any = "";
   public user: User = this.usercommunication.createEmptyUser();
   constructor(private router: Router,
-    public usercommunication: UserService,
-    public auth: AuthenticationService) { }
+    private usercommunication: UserService,
+    private auth: AuthenticationService) { }
 
   ngOnInit() {
     this.initUser();
@@ -37,5 +37,6 @@ export class ProfilePage implements OnInit {
   async logout() {
     await this.auth.SignOut();
     localStorage.clear();
+    
   }
 }

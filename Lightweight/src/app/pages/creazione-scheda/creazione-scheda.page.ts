@@ -59,11 +59,11 @@ export class CreazioneSchedaPage implements OnInit {
   ];
 
 
-  constructor(public exercisecommunication: EserciziService,
+  constructor(private exercisecommunication: EserciziService,
     private actionSheetCtrl: ActionSheetController,
     private router: Router,
-    public usercommunication: UserService,
-    public route: ActivatedRoute) { }
+    private usercommunication: UserService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.returnAll();

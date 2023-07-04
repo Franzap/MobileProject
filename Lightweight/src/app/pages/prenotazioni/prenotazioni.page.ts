@@ -32,10 +32,10 @@ export class PrenotazioniPage implements OnInit {
   public isModalOpen: boolean = false;
 
 
-  constructor(public usercommunication: UserService,
+  constructor(private usercommunication: UserService,
     private toastController: ToastController,
-    public router: Router,
-    public actionSheetCtrl: ActionSheetController) { }
+    private router: Router,
+    private actionSheetCtrl: ActionSheetController) { }
 
   ngOnInit() {
     this.initDateTime();

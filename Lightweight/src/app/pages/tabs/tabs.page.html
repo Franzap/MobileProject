@@ -21,10 +21,16 @@
       <ion-label  >Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="prenotazioni"  class="b">
+    <ion-tab-button  *ngIf= "user.abbonamento.stato===true;else noRes" tab="prenotazioni"  class="b">
       <ion-icon  name="calendar"></ion-icon>
       <ion-label  >Prenotazioni</ion-label>
     </ion-tab-button>
+    <ng-template #noRes>
+      <ion-tab-button (click)="NoAbb()" class="b">
+      <ion-icon   name="calendar"  ></ion-icon>
+      <ion-label  >Prenotazioni</ion-label>
+    </ion-tab-button>
+    </ng-template>
 
     </ion-tab-bar>
 </ion-tabs>

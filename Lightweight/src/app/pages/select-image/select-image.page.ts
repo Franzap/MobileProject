@@ -39,7 +39,7 @@ export class SelectImagePage implements OnInit {
     { id: 22, value: "assets/TheRock.png" },
     { id: 23, value: "assets/Ronnie.png" },
   ]
-  constructor(private router: Router, public communicationService: UserService) { }
+  constructor(private router: Router, private communicationService: UserService) { }
 
   ngOnInit() {
     this.initUser();
