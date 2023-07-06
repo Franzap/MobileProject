@@ -14,14 +14,11 @@
     <ion-toggle slot="end" color="success"></ion-toggle>
   </ion-item>
   <p class="p" [translate]="'settings.notificationsDescription' " > </p>
-  
-
-
-     <ion-item>
+  <p class="p1">Cambia Lingua:</p>
+  <ion-item color="medium">
       <ion-select [(ngModel)]="language" [value]="language" (ionChange)="changeLanguage()">
         <ion-select-option value="en">English</ion-select-option>
         <ion-select-option value="it">Italian</ion-select-option>
-        
       </ion-select>
     </ion-item>
 
