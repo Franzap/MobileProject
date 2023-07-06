@@ -1,126 +1,83 @@
-.tipologia{
-
-  margin-top: 45px;
-  text-align: center;
-  font-size: smaller;
-}
-
 .imgT{
-  margin-top: 30px;
   height: 50px;
   width: 50px;
-  display: block;
-  margin-left: auto; 
-  margin-right: auto;
-
+  margin-top: auto;
+  margin-bottom: auto; 
 }
-.esercizi{
-  position: absolute;
-  margin-top: 20px;
-  margin-left: 30px;
-  font-size: small;
-  z-index: 5;
+p{
+  padding:0px;
+  margin:0.5em 0px;
 }
 
-.p{
-  font-size: small;
-  margin-left: 15px;
-}
-.item{
-  border-radius: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
+#title_esercizi{
+  margin: 1em 0px 0px 0px;
 }
 
-.grid{
-  margin-top: 30px;
-  margin-bottom: 30px;
+.header_scheda{
+  display: flex;
+  flex-direction: row;  
+  margin: 2em auto;
+  padding: 0px 1em;
+  width: fill;
+  
 }
-.title{
-  font-size: medium;
-  position:absolute;
-  margin-top: -10px;
-}
-
-.immagex{
-  margin-top: 5px;
-}
-
-.imageEx{
-  position:absolute;
-  margin-left:170px;
-  border-radius:999em;   
-  -moz-border-radius:999em; 
-  -webkit-border-radius:999em;
-  -o-border-radius: 999em; 
-  margin-top: -29.5px;
-  z-index: 3;
-  width: 65px;
-  height: 30px;
+.header_subtitle{
+  display: flex;
+  flex-direction: column;
+  margin: 0px 2em;
+  width: fill;
 }
 
-.Item{
-    position: absolute;
-    margin-left: 150px;
-    width: 100px;
-    margin-top: -46px;
+.card{
+  display: flex;
+  flex-direction: row;
+  padding:0px;
+  margin: 1em 0px;
+  border-radius: 15px;
 
 }
 
-.Item2{
-    position: absolute;
-    margin-left: 150px;
-    width: 100px;
-    margin-top: -46px;
+.image_esercizi{
+  height: 70px;
+  width: 140px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 15px;
+  margin-top:auto;
+  margin-bottom: auto;
 }
 
-.close{
-    position:absolute;
-    margin-top: -70px;
-    margin-left: 270px;
-    height: 33px;
-    width:  33px;
+#content{
+  align-items: center;
 }
 
-.currentImage{
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 40px;
+.column{
+  display: flex;
+  flex-direction: column;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.m-auto{
+  margin: auto;
+}
+.text-center{
+  text-align: center;
 }
 
-.currentDescrizione{
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+.excercise_descriptor{
+  margin: 0px 2em;
+}
+.large_size{
+  font-size: larger;
+}
+#ex_list{
+  margin: 0px 2em;
+  width: fill;
 }
 
-.Title{
-    text-align: center;
-    margin-top: 60px;
-    font-size: large;
-    
-}
-
-.buttn{
-    margin-left: 80px;
-    margin-right: 80px;
-    margin-top: 20px;
-    margin-bottom: 50px;
-}
-
-ion-toolbar {
-    --border-style:hidden;
-}
-
-.nome{
-    text-align: center;
-    margin-top: 30px;
-    color: #875dd4;
-    font-size: larger;
-    
-}
-
+<<<<<<< HEAD
 .trash{
   
     height: 30px;
@@ -128,6 +85,11 @@ ion-toolbar {
     margin-top: -29.5px;
     z-index: 3;
     color: red;
+=======
+.left{
+  margin-right: auto;
+>>>>>>> 3a3d01349fe79b05cf8da8e7a20f152b179f5bda
 }
-
- 
+.right{
+  margin-left: auto;
+}
