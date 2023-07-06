@@ -1,44 +1,79 @@
 <ion-header>
-  <ion-toolbar color = "dark" line="none">
-    <ion-buttons slot="start" >
-      <ion-back-button defaultHref="/tabs/home" ></ion-back-button>
-    </ion-buttons>
-    <ion-buttons slot="primary">
-      <ion-button (click)="presentActionSheet()">
-        <ion-icon slot="icon-only" name="trash" class="trash" ></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <!--<ion-title *ngIf ="i!=null;" color="dark">{{schede[i].nome}}</ion-title>-->
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar color = "dark" line="none">
+      <ion-buttons slot="start" >
+        <ion-back-button defaultHref="/tabs/home" ></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="primary">
+        <ion-button (click)="presentActionSheet()">
+          <ion-icon slot="icon-only" name="trash" class="trash" ></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <!--<ion-title *ngIf ="i!=null;" color="dark">{{schede[i].nome}}</ion-title>-->
+    </ion-toolbar>
+  </ion-header>
+  
 
-<ion-content *ngIf ="i!==null;"  color = "dark" >
-  <p *ngIf ="i!==null;" class="nome" >{{schede[i].nome}}</p>
-  <p class = "tipologia">Tipologia : {{schede[i].tipologia}}</p>
-  <img class="imgT" src = {{schede[i].immagine}}>
-  <p class="esercizi"> Esercizi </p>
-  <ion-grid class ="grid">
-    <ion-card *ngFor="let exercise of currentEsercizi"  color="medium" class="card">
-      <ion-card-header class="immagex">
-        <ion-card-title class="title">{{ exercise.nome }}</ion-card-title>
-      </ion-card-header>
-      <img src= {{exercise.immagine}} class="imageEx" (click)="setOpen(true , exercise)" >
-       <ion-modal [isOpen]="isModalOpen">
-          <ng-template>
-          <ion-content color="dark">
-              <p class="Title">{{currentTitle}}</p>
-              <ion-icon name="close-circle" (click)="setOpen(false , exercise)" color="primary" class="close">
-                </ion-icon>
-              <img src= {{currentImage}} class="currentImage" width="275"  height="120" >
-              <p class="currentDescrizione"> {{currentDescrizione}}</p>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
-        <p class="p">N°serie {{ exercise.nSerie}} </p>
-         <p class="p"> N°ripetizioni  {{ exercise.nReps }}</p>
-        </ion-card>
-      </ion-grid>
-      <ion-button (click)="modifica()" color="primary" expand="block" class="buttn" [translate] = "'cards.edit'">
+<ion-content *ngIf ="i!==null;"  color = "dark">
+  
+  <div id="content" class="column">   
+    <p id="title_esercizi" class="large_size text-center">Scheda</p>
+
+    <div class="header_scheda">
+      <img class="imgT right" src = {{schede[i].immagine}}>
+      <div class="header_subtitle">
+        <p *ngIf ="i!==null;" class="text-center large_size">{{schede[i].nome}}</p>
+        <p class="text-center">{{schede[i].tipologia}}</p>
         
-      </ion-button>
+      </div>
+      <img src="assets/pencil.svg" class="imgT left" alt="modifie" (click)="modifica()">
+      
+    </div>
+   
+    <ion-grid id="ex_list">
+      <ion-card *ngFor="let exercise of currentEsercizi" color="medium" class="card">
+        <div style="width: 40%;" class="column">
+          <img src= {{exercise.immagine}} class="image_esercizi" (click)="setOpen(true , exercise)" >
+        </div>
+        <div class="column exercise_descriptor" style="width: 60%;">
+            <div class="header_esercizi">
+              <p class="title text-center large_size">{{ exercise.nome }}</p>
+            </div>
+            <div class="row">
+              <div class="column m-auto">
+                <p class="text-center">Serie</p>
+                <p class="text-center large_size">
+                  {{ exercise.nSerie}}
+                </p>
+              </div>
+              <div class="column m-auto">
+                <p class="text-center large_size"><b>X</b></p>
+              </div>
+              <div class="column m-auto">
+                <p class="text-center">Rep</p>
+                <p class="text-center large_size"> {{ exercise.nReps }}</p>
+              </div>
+            </div>
+            <ion-modal [isOpen]="isModalOpen">
+              <ng-template>
+              <ion-content color="dark">
+                  <p class="Title">{{currentTitle}}</p>
+                  <ion-icon name="close-circle" (click)="setOpen(false , exercise)" color="primary" class="close">
+                    </ion-icon>
+                  <img src= {{currentImage}} class="currentImage" width="275"  height="120" >
+                  <p class="currentDescrizione"> {{currentDescrizione}}</p>
+                </ion-content>
+              </ng-template>
+            </ion-modal> 
+        </div>
+        
+        
+          
+      </ion-card>
+      
+    
+    </ion-grid>
+    
+
+  </div>
+    
 </ion-content>
