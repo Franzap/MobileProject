@@ -3,6 +3,8 @@ import { User } from "../model/user.model";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument, DocumentData } from "@angular/fire/compat/firestore"
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +14,8 @@ export class AuthenticationService {
         public afs: AngularFirestore,
         public afAuth: AngularFireAuth,
         public router: Router,
-        public ngZone: NgZone
+        public ngZone: NgZone,
+        private toastController: ToastController,
     ) { }
 
     //Login dell'Utente con Email e Password
@@ -28,7 +31,8 @@ export class AuthenticationService {
                     }
                 })
             }).catch((error) => {
-                window.alert(error.message);
+                //window.alert(error.message);
+                this.showError();
             })
     }
     //registrazione e creazione dell'utente nel DB
@@ -73,6 +77,25 @@ export class AuthenticationService {
             merge: true
         })
     }
+
+    showError() {
+        this.presentToast();
+      }
+      async presentToast() {
+        const toast = await this.toastController.create({
+          message: 'Credenziali errate',
+          duration: 3000,
+          position: 'middle',
+          color: "danger",
+          buttons: [
+            {
+              text: 'Annulla',
+              role: 'cancel'
+            }
+          ],
+        });
+        await toast.present();
+      }
 }
 
 
