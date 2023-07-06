@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'; 
-
+import { ToastController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/services/autenticazione.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/model/user.model';
@@ -27,7 +27,8 @@ export class SignupPage implements OnInit {
   
   
   
- constructor(private authentication : AuthenticationService, private formBuilder: FormBuilder) { }
+ constructor(private authentication : AuthenticationService, private formBuilder: FormBuilder,
+             private toastController: ToastController,) { }
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
@@ -51,56 +52,33 @@ export class SignupPage implements OnInit {
     if (this.ionicForm.valid){
     this.authentication.SignUp(this.email, this.password,this.username);
     }else {
-      return console.log('Please provide all the required values!');
+      
+      this.showError();
     }
-    //this.fireService.SignIn(this.email,this.password);
-    //this.addUser();
-    
-    
    
-    //this.firestore.collection<any>('users');
-   // this.addUser();
-    //this.add();
-    
     
     
     
   }
-    /*submit(){
-      window.alert(this.username);
-      window.alert(this.email);
-      window.alert(this.password);
-    }
-    */
-   /*addUser() {
-    const firebaseApp = getApp();
-    const db = getFirestore(firebaseApp);
-    const send = collection(db , "users");
-    const data = {
-      username : this.username,
-      id : "ciao"
-    
-    }
-    return addDoc(send,data);
-   }
-   */
    
-   
-
-   /*add() {
-    const notesRef = collection(this.Firestore ,'users');
-    const data = {
-      username : this.username
-    }
-     return addDoc(notesRef ,data );
-   }
-   */
-   /*addItem(name: string) { 
-    const user = 'users'; 
-    this.Firestore.add({ name, user }); 
-  } 
-  */
-
+  showError() {
+    this.presentToast();
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Please provide all the corrected values!',
+      duration: 3000,
+      position: 'middle',
+      color: "danger",
+      buttons: [
+        {
+          text: 'Annulla',
+          role: 'cancel'
+        }
+      ],
+    });
+    await toast.present();
+  }
 
     
   }
