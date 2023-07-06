@@ -10,8 +10,6 @@ import { Scheda } from 'src/app/model/scheda.model';
 import { TranslateService } from '@ngx-translate/core';
 
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -19,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomePage implements OnInit {
 
+  
   public language: string = "";
   //riferimenti ai valori dell'utente e alla "palestra" da mostrare 
   
@@ -54,6 +53,7 @@ export class HomePage implements OnInit {
     }else{
       this.language = "en";
     }
+   
   });
     
     

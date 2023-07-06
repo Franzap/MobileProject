@@ -10,11 +10,11 @@
 
 <ion-content color ="dark">
   <ion-item color="medium" line="none " class ="item">
-    <ion-label>Notifiche</ion-label>
+    <ion-label [translate] = "'settings.notifications'"></ion-label>
     <ion-toggle slot="end" color="success"></ion-toggle>
   </ion-item>
   <p class="p" [translate]="'settings.notificationsDescription' " > </p>
-  <p class="p1">Cambia Lingua:</p>
+  <p class="p1" [translate]="'settings.change_language' "  ></p>
   <ion-item color="medium">
       <ion-select [(ngModel)]="language" [value]="language" (ionChange)="changeLanguage()">
         <ion-select-option value="en">English</ion-select-option>

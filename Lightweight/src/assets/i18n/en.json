@@ -46,7 +46,8 @@
        "settings" : {
         "title" : "Settings", 
         "notifications": "Notifications",
-        "notificationsDescription" : "Consent to notifications allows us to keep you constantly updated"
+        "notificationsDescription" : "Consent to notifications allows us to keep you constantly updated",
+        "change_language" : "Change language"
         
        },
 
@@ -69,6 +70,7 @@
         "edit" : "Edit"
 
        }
+
 
     
 }
