@@ -8,6 +8,8 @@ import { Scheda } from 'src/app/model/scheda.model';
 import { User } from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-creazione-scheda',
@@ -57,13 +59,15 @@ export class CreazioneSchedaPage implements OnInit {
       img: 'assets/dimagrimento.png',
     },
   ];
-
+  public ionicForm: FormGroup;
 
   constructor(private exercisecommunication: EserciziService,
     private actionSheetCtrl: ActionSheetController,
     private router: Router,
     private usercommunication: UserService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private toastController: ToastController) { }
 
   ngOnInit() {
     this.returnAll();
@@ -184,17 +188,27 @@ export class CreazioneSchedaPage implements OnInit {
       temporaryScheda.tipologia = this.currentType.name;
       temporaryScheda.immagine = this.currentType.img;
       temporaryScheda.esercizi = this.currentEsercizi;
+      if(this.title != "" && this.currentType.id!=""){
       this.user.schede.push(temporaryScheda);
       this.usercommunication.updateUser(this.user);
       this.router.navigate(['/tabs/home'])
+      }else{
+       //window.alert("error");
+       this.showError();
+      }
     }
     else {
       this.user.schede[this.currentIndex].nome = this.title;
       this.user.schede[this.currentIndex].tipologia = this.currentType.name;
       this.user.schede[this.currentIndex].immagine = this.currentType.img;
       this.user.schede[this.currentIndex].esercizi = this.currentEsercizi;
+      if(this.title != "" ){
       this.usercommunication.updateUser(this.user);
       this.router.navigate(['/tabs/home'])
+      }else{
+        //window.alert("error");
+        this.showError()
+      }
     }
   }
   createEmptyScheda(): Scheda {
@@ -235,5 +249,24 @@ export class CreazioneSchedaPage implements OnInit {
       ],
     });
     actionSheet.present();
+  }
+
+  showError() {
+    this.presentToast();
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Please compile all fields!',
+      duration: 3000,
+      position: 'middle',
+      color: "danger",
+      buttons: [
+        {
+          text: 'Annulla',
+          role: 'cancel'
+        }
+      ],
+    });
+    await toast.present();
   }
 }
