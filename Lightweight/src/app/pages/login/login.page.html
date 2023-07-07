@@ -1,45 +1,28 @@
-<ion-header >
-  
-</ion-header>
 
-<ion-content color = "dark">
 
-  
-    <img src = "assets/icon.png" width = "100" height="100" class="icon">
-    <img>
 
+<ion-content color = "dark" id="content">
+  <img src = "assets/iconWhite.png" class="icon">
     
-    <ion-item  color ="medium" class="username">
-      <ion-label class="username_label">E-mail</ion-label>
-      <ion-input type ="email" placeholder ="email@domain.com" id="email"  
-      [(ngModel)] = "email" ></ion-input>
-    </ion-item>
-
-    
-
-    
-
-
-    <ion-item color = "medium" class ="password">
-      <ion-label class = "password_label">Password</ion-label>
-      <ion-input type ="password" value="password" id="password" 
-      [(ngModel)] = "password" ></ion-input>
-    </ion-item>
-
-   
-
-    <ion-button color ="secondary"expand ="block" class="Sign_in" (click) = "Login()" >
-      Sign in 
-
-    </ion-button >
+  <div id="login_form">
+      <div class="input_wrap">
+        <p class="label_input">E-mail</p>
+        <ion-item  color ="medium" class="input_box">
+          <ion-input type ="email" placeholder ="email@domain.com" id="email"  
+          [(ngModel)] = "email" ></ion-input>
+        </ion-item>
+      </div>
+      <div class="input_wrap" id="password">
+        <p class = "label_input">Password</p>
+        <ion-item color = "medium" class ="input_box">
+          <ion-input type ="password" value="password" placeholder ="* * * * * * * * *" id="password" 
+          [(ngModel)] = "password" ></ion-input>
+        </ion-item>
+      </div>
+    <ion-button color ="secondary"expand ="block" class="Sign_in" (click) = "Login()" ><b>Sign in</b></ion-button >
  
 
-    <ion-button color = "primary" expand ="block" class="Sign_up" (click) = "SignUp()">
-      Sign up
-    </ion-button>
-    
-  
-  
-  
+    <ion-button color = "primary" expand ="block" class="Sign_up" (click) = "SignUp()"><b>Sign up</b></ion-button>
 
+  </div>
 </ion-content>

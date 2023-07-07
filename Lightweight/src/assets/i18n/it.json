@@ -2,12 +2,12 @@
     "a":"c",
     "home_page":{  
 
-    "opening" : "Apertura alle {{value}}",
-    "closure" : "Chiude alle {{value}}", 
+    "opening1" : "Apertura",
+    "opening2":"dalle {{value1}} alle {{value2}}",
     "welcome" : "Benvenuto ",
     "subscription_terminated" : "Abbonamento Scaduto",
-    "subscription_pt1" : "Scadenza abbonamento tra {{value}} giorni",
-    "subscription_pt2" : "giorni",
+    "subscription_pt1" : "Scadenza abbonamento:",
+    "subscription_pt2" : "{{value}} giorni",
     "startForms" : "Crea una nuova scheda",
     "forms" : "Schede allenamento",
     "newForm" : "Nuova Scheda"},

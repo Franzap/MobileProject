@@ -108,7 +108,9 @@ export class HomePage implements OnInit {
     if (scadenza != null) {
       var dataScadenza = scadenza.toDate();
       var todayDate = new Date();
+      
       var utc1 = Date.UTC(dataScadenza.getFullYear(), dataScadenza.getMonth(), dataScadenza.getDate());
+      
       var utc2 = Date.UTC(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
       const diffInDays = Math.floor((utc1 - utc2) / (1000 * 60 * 60 * 24));
       if (diffInDays > 0) {
@@ -156,22 +158,14 @@ export class HomePage implements OnInit {
 
 
   ionViewDidEnter() : void{
-   
     
     this._translateLanguage();
   }
-
    _initialiseTranslation(): void {
-
-   
      this._translate.get('home_page.opening').subscribe((res:string) =>{
      //this.stringApertura = res;
     
-    
-    });
-    
-    
-    
+    }); 
    
   }
 

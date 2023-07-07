@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title color="dark">signup</ion-title>
+    <ion-title color="dark">Registration</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,37 +11,26 @@
   <ion-item  color ="medium" class="username">
     
     <ion-input id="username" placeholder ="Inserisci Username" type="text" formControlName="username"
-    [(ngModel)] = "username" ></ion-input>
-  </ion-item>
+      [(ngModel)] = "username" ></ion-input>
+    </ion-item>
 
-  <div
-  *ngIf="ionicForm.controls['username'].touched && ionicForm.controls['username'].invalid"
->
- <div
-   class="error"
-    *ngIf="errorControl['username'].errors?.['required'] "
-  >
-    <ion-text color="danger">Username is required.</ion-text>
-  </div>
+    <div *ngIf="ionicForm.controls['username'].touched && ionicForm.controls['username'].invalid">
   
-  <div  *ngIf="errorControl['username'].errors?.['minlength']" class="error">
-    <ion-text color="danger">Username should be at least 5 characters.</ion-text>
-  </div>
-</div>
+      <div class="error" *ngIf="errorControl['username'].errors?.['required'] " >
+        <ion-text color="danger">Username is required.</ion-text>
+      </div>
+  
+      <div *ngIf="errorControl['username'].errors?.['minlength']" class="error">
+        <ion-text color="danger">Username should be at least 5 characters.</ion-text>
+      </div>
+    </div>
 
-  <ion-item  color ="medium" class="email">
-    
-    <ion-input id="email" type="email" placeholder ="Inserisci Email"  formControlName="email"
-    [(ngModel)] = "email"  ></ion-input>
-  </ion-item>
+    <ion-item  color ="medium" class="email">
+      <ion-input id="email" type="email" placeholder ="Inserisci Email"  formControlName="email" [(ngModel)] = "email"  ></ion-input>
+    </ion-item>
 
-  <div
-  *ngIf="ionicForm.controls['email'].touched && ionicForm.controls['email'].invalid"
->
- <div
- class="error"
-    *ngIf="errorControl['email'].errors?.['required'] "
-  >
+  <div *ngIf="ionicForm.controls['email'].touched && ionicForm.controls['email'].invalid">
+  <div class="error" *ngIf="errorControl['email'].errors?.['required'] ">
     <ion-text color="danger">Email is required.</ion-text>
   </div>
   

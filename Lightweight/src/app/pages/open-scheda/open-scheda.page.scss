@@ -9,6 +9,7 @@ p{
   margin:0.5em 0px;
 }
 
+
 #title_esercizi{
   margin: 1em 0px 0px 0px;
 }
@@ -16,18 +17,32 @@ p{
 .header_scheda{
   display: flex;
   flex-direction: row;  
-  margin: 2em auto;
+  margin: 1.5em auto;
   padding: 0px 1em;
   width: fill;
   
 }
 .header_subtitle{
-  display: flex;
-  flex-direction: column;
-  margin: 0px 2em;
   width: fill;
 }
 
+#nome_scheda{
+  margin:auto 2em;
+}
+
+.my-auto{
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+
+.white{
+  color:white;
+}
+ion-back-button{
+  margin: 0px;
+  padding: 0px;
+}
 .card{
   display: flex;
   flex-direction: row;
@@ -82,4 +97,8 @@ p{
 }
 .right{
   margin-left: auto;
+}
+
+.description{
+  margin: 1em 0px;
 }

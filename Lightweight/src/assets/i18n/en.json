@@ -2,12 +2,12 @@
     "a":"b",
     "home_page":{  
 
-    "opening" : "Opens at {{value}}",
-    "closure" : "Closes at {{value}}", 
+    "opening1" : "Opens",
+    "opening2":"from {{value1}} to {{value2}}",
     "welcome" : "Welcome ",
     "subscription_terminated" : "Subscription expired",
-    "subscription_pt1" : "expires in {{value}} days",
-    "subscription_pt2" : "days",
+    "subscription_pt1" : "Expiration date: ",
+    "subscription_pt2" : "{{value}} days",
     "startForms" : "Create a new card",
     "forms" : "Training cards",
     "newForm" : "New card"},

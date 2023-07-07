@@ -1,34 +1,22 @@
-<ion-header>
-    <ion-toolbar color = "dark" line="none">
-      <ion-buttons slot="start" >
-        <ion-back-button defaultHref="/tabs/home" ></ion-back-button>
-      </ion-buttons>
-      <ion-buttons slot="primary">
-        <ion-button (click)="presentActionSheet()">
-          <ion-icon slot="icon-only" name="trash" class="trash" ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <!--<ion-title *ngIf ="i!=null;" color="dark">{{schede[i].nome}}</ion-title>-->
-    </ion-toolbar>
-  </ion-header>
-  
 
 <ion-content *ngIf ="i!==null;"  color = "dark">
   
   <div id="content" class="column">   
-    <p id="title_esercizi" class="large_size text-center">Scheda</p>
 
     <div class="header_scheda">
-      <img class="imgT right" src = {{schede[i].immagine}}>
-      <div class="header_subtitle">
-        <p *ngIf ="i!==null;" class="text-center large_size">{{schede[i].nome}}</p>
-        <p class="text-center">{{schede[i].tipologia}}</p>
-        
+      <div class="header_subtitle row left">
+        <ion-back-button defaultHref="/tabs/home" class="white"></ion-back-button>
+        <p *ngIf ="i!==null;" class="text-center large_size m-auto">{{schede[i].nome}}</p>        
       </div>
       <img src="assets/pencil.svg" class="imgT left" alt="modifie" (click)="modifica()">
+      <img src="assets/trash.svg" class="imgT left" alt="modifie" (click)="presentActionSheet()">
+    </div>
+    <div class="row description">
+      <img class="imgT left" src = {{schede[i].immagine}}>
+      <p class="text-center large_size" id="nome_scheda" >{{schede[i].tipologia}}</p>
       
     </div>
-   
+
     <ion-grid id="ex_list">
       <ion-card *ngFor="let exercise of currentEsercizi" color="medium" class="card">
         <div style="width: 40%;" class="column">
@@ -56,7 +44,7 @@
             <ion-modal [isOpen]="isModalOpen">
               <ng-template>
               <ion-content color="dark">
-                  <p class="Title">{{currentTitle}}</p>
+                  <p class="text-center my-auto">{{currentTitle}}</p>
                   <ion-icon name="close-circle" (click)="setOpen(false , exercise)" color="primary" class="close">
                     </ion-icon>
                   <img src= {{currentImage}} class="currentImage" width="275"  height="120" >

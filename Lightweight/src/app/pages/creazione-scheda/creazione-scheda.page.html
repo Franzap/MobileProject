@@ -5,82 +5,83 @@
       </ion-icon> 
     </ion-buttons>
     <ng-template #modifica>
-      <ion-title class = "titleM" [translate] = "'cards.edit'"></ion-title>
+      <ion-title class = "my-auto text-center" [translate] = "'cards.edit'"></ion-title>
     </ng-template>
     <ion-title *ngIf="isModifica === false; else modifica"  class="titleM" [translate] = "'cards.newCard'" ></ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content color="dark">
-<p class="p" [translate] = "'cards.selectName'">
-  
-</p>
-<ion-item color="medium"class="nome">
-    <ion-input placeholder="example" [(ngModel)] = "title">
-    </ion-input>
-  </ion-item>
-  <p class="p" [translate] = "'cards.selectCategory'"></p>
-  <ion-item color="medium">
-        <ion-select color="medium" placeholder="Select type" (ionChange)="handleChangeType($event)" [(ngModel)] = "currentType">
-          <ion-select-option *ngFor="let type of types" [value]="type" color="medium" 
-          >{{ type.name }}</ion-select-option>
-        </ion-select>
-        <img *ngIf= "currentType.img!=='';else noImg" src={{currentType.img}} width = "35" height="35" class="image">
-      <ng-template #noImg></ng-template>
-      </ion-item>
-      <ng-template #aggiungi>
-        <p class="p" [translate] = "'cards.selectExercises'"> <!--addExercises-->
-          <!--Aggiungi esercizi-->
+<div id="content">
+  <p class="p" [translate] = "'cards.selectName'"></p>
+  <ion-item color="medium"class="nome">
+      <ion-input placeholder="example" [(ngModel)] = "title">
+      </ion-input>
+    </ion-item>
+    <p class="p" [translate] = "'cards.selectCategory'"></p>
+    <ion-item color="medium">
+          <ion-select color="medium" placeholder="Select type" (ionChange)="handleChangeType($event)" [(ngModel)] = "currentType">
+            <ion-select-option *ngFor="let type of types" [value]="type" color="medium" 
+            >{{ type.name }}</ion-select-option>
+          </ion-select>
+          <img *ngIf= "currentType.img!=='';else noImg" src={{currentType.img}} width = "35" height="35" class="image">
+        <ng-template #noImg></ng-template>
+        </ion-item>
+        <ng-template #aggiungi>
+          <p class="p" [translate] = "'cards.selectExercises'"> <!--addExercises-->
+            <!--Aggiungi esercizi-->
+          </p>
+        </ng-template>
+        <p *ngIf="isModifica===false;else aggiungi"  class="p" [translate] = "'cards.selectExercises'">
+       
         </p>
-      </ng-template>
-      <p *ngIf="isModifica===false;else aggiungi"  class="p" [translate] = "'cards.selectExercises'">
-     
-      </p>
-      <ion-item color="medium">
-        <ion-select color="medium" placeholder="Select exercises" (ionChange)="handleChangeExercises($event)" [multiple]="true">
-          <ion-select-option *ngFor="let exercise of esercizi" [value]="exercise" color="medium">{{ exercise.nome }}</ion-select-option>
-        </ion-select>
-      </ion-item>
-     <div *ngIf="currentEsercizi.length>0;">
-      <p class="p1">
-        Esercizi selezionati
-      </p>
-      <ion-grid class ="grid">
-          <ion-card *ngFor="let exercise of currentEsercizi"  color="medium" class="card">
-            <ion-card-header>
-              <ion-card-title class="title">{{ exercise.nome }}</ion-card-title>
-            </ion-card-header>
-            <ng-template #trash>
-              <img src= {{exercise.immagine}} class="imageEx" width = "55" height="30"(click)="setOpen(true , exercise)" >
-              <ion-icon *ngIf="scheda.esercizi.indexOf(exercise)!==-1;" name="trash" class ="trash" (click)="elimina(exercise)"></ion-icon>
-            </ng-template>
-            <div *ngIf="isModifica===false;else trash">
-              <img src= {{exercise.immagine}} class="imageEx" width = "65" height="30"(click)="setOpen(true , exercise)" >
-            </div>
-            <ion-modal [isOpen]="isModalOpen">
-                <ng-template>
-                  <ion-content color="dark">
-                    <p class="Title">{{currentTitle}}</p>
-                    <ion-icon name="close-circle" (click)="setOpen(false, exercise)" color="primary" class="close">
-                  </ion-icon>
-                  <img src= {{currentImage}} class="currentImage" width="275"  height="120" >
-                    <p class="currentDescrizione"> {{currentDescrizione}}</p>
-                  </ion-content>
-                </ng-template>
-              </ion-modal>
-              <p class="p">N°serie {{ exercise.nSerie}} </p>
-               <ion-item  lines="none" color="medium" class="Item">
-                <ion-range (ionChange)="onIonChangeSerie($event , exercise)" max="10" class="Range">
-                   </ion-range>
-                  </ion-item>
-           <p class="p"> N°ripetizioni  {{ exercise.nReps }}</p>
-           <ion-item  lines="none" color="medium" class="Item2">
-            <ion-range (ionChange)="onIonChangeReps($event , exercise)" max="100" class="Range">
-               </ion-range>
-              </ion-item>
-            </ion-card>
-        </ion-grid>
-      </div>
-      <ion-button color="primary" class="save" expand = "block" (click)="save()" [translate] = "'cards.save'">
-      
-     </ion-button>
+        <ion-item color="medium">
+          <ion-select color="medium" placeholder="Select exercises" (ionChange)="handleChangeExercises($event)" [multiple]="true">
+            <ion-select-option *ngFor="let exercise of esercizi" [value]="exercise" color="medium">{{ exercise.nome }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+       <div *ngIf="currentEsercizi.length>0;">
+        <p class="p1">
+          Esercizi selezionati
+        </p>
+        <ion-grid class ="grid">
+            <ion-card *ngFor="let exercise of currentEsercizi"  color="medium" class="card">
+              <ion-card-header>
+                <ion-card-title class="title">{{ exercise.nome }}</ion-card-title>
+              </ion-card-header>
+              <ng-template #trash>
+                <img src= {{exercise.immagine}} class="imageEx" width = "55" height="30"(click)="setOpen(true , exercise)" >
+                <img *ngIf="scheda.esercizi.indexOf(exercise)!==-1;" src="assets/trash.svg"name="trash" class ="trash" (click)="elimina(exercise)">
+              </ng-template>
+              <div *ngIf="isModifica===false;else trash">
+                <img src= {{exercise.immagine}} class="imageEx" width = "65" height="30"(click)="setOpen(true , exercise)" >
+              </div>
+              <ion-modal [isOpen]="isModalOpen">
+                  <ng-template>
+                    <ion-content color="dark">
+                      <p class="Title">{{currentTitle}}</p>
+                      <ion-icon name="close-circle" (click)="setOpen(false, exercise)" color="primary" class="close">
+                    </ion-icon>
+                    <img src= {{currentImage}} class="currentImage" width="275"  height="120" >
+                      <p class="currentDescrizione"> {{currentDescrizione}}</p>
+                    </ion-content>
+                  </ng-template>
+                </ion-modal>
+                <p class="p">Serie: {{ exercise.nSerie}} </p>
+                 <ion-item  lines="none" color="medium" class="Item">
+                  <ion-range (ionChange)="onIonChangeSerie($event , exercise)" max="10" class="Range">
+                     </ion-range>
+                    </ion-item>
+             <p class="p">Rep: {{ exercise.nReps }}</p>
+                <ion-item  lines="none" color="medium" class="Item2">
+              <ion-range (ionChange)="onIonChangeReps($event , exercise)" max="100" class="Range">
+                 </ion-range>
+                </ion-item>
+              </ion-card>
+          </ion-grid>
+        </div>
+        <ion-button color="primary" class="save" expand = "block" (click)="save()" [translate] = "'cards.save'">
+        
+       </ion-button>
+  
+</div>
 </ion-content>

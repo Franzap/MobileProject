@@ -1,114 +1,99 @@
-<ion-header>
-
-</ion-header>
-
-<ion-content *ngIf="user.uid!=='';else start"  color="dark" class = "body">
-  <section class="profile_nav">
-    <div class="profile_nav_sub profile_image">
-      <img src={{user.image}} routerLink="/profile" id="profile_picture"><img>
+<ion-content *ngIf="user.uid!=='';else start"  color="dark" class = "body" onload="startTime()">
+  <div id="content">
+    <section>
+      <div class="profile_nav row">
+        <img src={{user.image}} routerLink="/profile" id="profile_picture"><img>
+        <div class="m-auto column profile_text">
+          <p id="greetings"[translate]="'home_page.welcome'"></p>
+          <b><p class="username">{{user.displayName}}</p></b>
+        </div>
+        <div class="profile_icons">
+          <ion-icon name="notifications-outline" class="m-auto icon" routerLink="/notifications"></ion-icon>
+          <ion-icon name="settings-outline" class="m-auto icon" routerLink="/settings"></ion-icon>
+        </div>
     </div>
-    <div class="profile_nav_sub profile_section profile_text">
-      <p ><small [translate]="'home_page.welcome'"></small><br>{{user.displayName}}</p>
-    </div>
-    <div class="profile_nav_sub profile_section">
-      <ion-icon name="notifications-outline" class="profile_icon" routerLink="/notifications"></ion-icon>
-      <ion-icon name="settings-outline" class="profile_icon" routerLink="/settings"></ion-icon>
-    </div>
-  </section>
-
-  <section>
-    <ng-template #open>
-      <div class="stato_informazioni background_success">
-        <p [translate]="'home_page.closure'" [translateParams]="{value:stringChiusura}"  ></p>
-      </div>
-    </ng-template>
-
-    <ng-template #closed>
-      <div class="stato_informazioni background_warn">
-        <p [translate]="'home_page.opening'"  [translateParams]= "{value:stringApertura}"></p>
-      </div>
-    </ng-template>
-
-    <div *ngIf="IsOpen === true; then open else closed"
-    class="informazioni_servizio"></div>
-
-
-
-    <div *ngIf="giorniAbbonamentoRimasti >0; then abbonato else scaduto" class="scadenza_abbonamento">
-      
-    </div>
-
-    <ng-template #abbonato>
-      <div class="stato_informazioni background_success">
-        <p [translate]="'home_page.subscription_pt1'" [translateParams]="{value:giorniAbbonamentoRimasti}"> </p>
-      </div>
-    </ng-template>
-    <ng-template #scaduto>
-      <ng-template #abbonamento_presente>
-        <p [translate]="'home_page.subscription_terminated'"></p>
-      </ng-template>
-
-      <ng-template #abbonamento_assente>
-        <p>Nessun Abbonamento</p>
-      </ng-template>
-      
-      <div *ngIf ="user.abbonamento.stato === true; then abbonamento_presente else abbonamento_assente " class="stato_informazioni background_warn">
-      </div>
-    </ng-template>
-  </section>
-   
-  <div *ngIf="user.schede.length > 0; else crea">
-    <p [translate]="'home_page.forms'"></p>
-
-    <ion-slides pager="true">
-
-      <ion-slide *ngFor="let scheda of user.schede">
-        <ion-card class="scheda" color="medium" (click)="navigateToScheda(scheda)">
-          <ion-card-header>
-            <ion-card-title class="schedaTitle">{{scheda.nome}}</ion-card-title>
-
-          </ion-card-header>
-
-          <ion-card-content>
-            <img src={{scheda.immagine}} width="45" height="45" class="schedaImg">
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card color="medium" class="scheda">
-          <ion-card-header>
-            <ion-card-title class="schedaTitle" [translate]="'home_page.newForm'"></ion-card-title>
-
-          </ion-card-header>
-          <ion-card-content>
-            <ion-icon name="add-circle-outline" color="primary" (click)="presentActionSheet()" class="Plus"></ion-icon>
-          </ion-card-content>
-
-        </ion-card>
-
-      </ion-slide>
-
-
-
-    </ion-slides>
+    </section>
     
+  
+    <section class="gym_info">
+  
+        <div class="stato_informazioni column" color="medium">
+          <b><p class = "text-center"  [translate]="'home_page.opening1'"></p></b>
+          <p class = "text-center second_info"  [translate]="'home_page.opening2'"  [translateParams]= "{value1:stringChiusura, value2:stringChiusura}"></p>
+        </div>
+  
+  
+      <div *ngIf="giorniAbbonamentoRimasti >0; then abbonato else scaduto" class="scadenza_abbonamento"></div>
+  
+      <ng-template #abbonato>
+        <div class="stato_informazioni background_success column" color="medium">
+          <b><p class = "text-center"  [translate]="'home_page.subscription_pt1'" ></p></b>
+          <p class = "text-center second_info"   [translate]="'home_page.subscription_pt2'" [translateParams]="{value:giorniAbbonamentoRimasti}"> </p>
+        </div>
+      </ng-template>
+      <ng-template #scaduto>
+        <ng-template #abbonamento_presente>
+          <p [translate]="'home_page.subscription_terminated'"></p>
+        </ng-template>
+  
+        <ng-template #abbonamento_assente>
+          <p>Nessun Abbonamento</p>
+        </ng-template>
+        
+        <div *ngIf ="user.abbonamento.stato === true; then abbonamento_presente else abbonamento_assente " class="stato_informazioni background_warn">
+        </div>
+      </ng-template>
+    </section>
+     
+    <div class="column wrapper_schede" *ngIf="user.schede.length > 0; else crea">
+      <p [translate]="'home_page.forms'" class="header_scheda"></p>
+      <div class="wrapper_slides">
+        <ion-slides pager="true">
+  
+          <ion-slide *ngFor="let scheda of user.schede">
+            <ion-card class="scheda" color="medium" (click)="navigateToScheda(scheda)">
+              <ion-card-header>
+                <ion-card-title class="schedaTitle">{{scheda.nome}}</ion-card-title>
+    
+              </ion-card-header>
+    
+              <ion-card-content>
+                <img src={{scheda.immagine}} class="schedaImg">
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card color="medium" class="scheda">
+              <ion-card-header>
+                <ion-card-title class="schedaTitle" [translate]="'home_page.newForm'"></ion-card-title>
+    
+              </ion-card-header>
+              <ion-card-content>
+                <ion-icon name="add-circle-outline" color="primary" (click)="presentActionSheet()" class="Plus"></ion-icon>
+              </ion-card-content>
+    
+            </ion-card>
+    
+          </ion-slide>
+    
+    
+    
+        </ion-slides>
+      </div>
+      
+      
+    </div>
+  
+    <ng-template #crea>
+      <p class="schede" [translate]="'home_page.startForms'"></p>
+  
+      <div class="div">
+        <ion-icon name="add-circle-outline" color="primary" class="plus" (click)="presentActionSheet()"></ion-icon>
+      </div>
+    </ng-template>
+  
+  
   </div>
-
-
-
-
-
-  <ng-template #crea>
-    
-    <p class="schede" [translate]="'home_page.startForms'">
-      
-    </p>
-
-    <div class="div">
-      <ion-icon name="add-circle-outline" color="primary" class="plus" (click)="presentActionSheet()"></ion-icon>
-    </div>
-  </ng-template>
-
 
 
 </ion-content>

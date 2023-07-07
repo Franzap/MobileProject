@@ -1,159 +1,94 @@
-.body{
+
+.header_scheda{
+    font-size: larger;
+    margin: 2em auto auto auto;
+}
+
+.column{
     display: flex;
     flex-direction: column;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.profile_nav{
-    margin-top:50px;
-    display: flex;
-}
-#profile_picture{
-    height: 70px;
-    width: 70px;
-    border-radius: 999em;
-}
-.profile_icon{
-    height: 25px;
-    width: 25px;
-    padding: 0em 0.3em;
-}
-.profile_image{
-    padding: 0em 1em;
 }
 
-.profile_nav_sub{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.text-center{
+    text-align: center;
 }
 
-.profile_section{
-    margin: auto;
+p{
+    margin: 0px;
+    padding: 0px;
 }
 
-.profile_text{
-    flex-direction: column;
-}
-
-.abbonamento {
-    margin-top: 15px;
-    margin-left: 20px;
-    margin-right: 20px;
-    height: 30px;
-    
-}
-.abbonato {
-    margin-top: 15px;
-    margin-left: 20px;
-    margin-right: 20px;
-    height: 30px;
-}
-.aperto {
-   text-align: center;
-   color:black;  
-}
-.schede {
-   margin-top:80px;
-   text-align: center;
-   font-size: small;
-}
 .stato_informazioni{
-    display: flex;
-    height: 50px;
-    width: 200px;
-    border-radius: 8px;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
-
-.background_warn{
-    background-color: red;
-}
-.background_succes{
-    background-color: green;
-}
-
-.titleChiuso {
-    margin-top: 5px;
-    text-align: center;
-    font-size: medium;
-}
-
-.titleAperto {
-    margin-top: 5px;
-    text-align: center;
-    font-size: medium;
-}
-
-.noAbb{
-    margin-top: 5px;
-    text-align: center;
-    font-size: medium;
-}
-.siAbb{
-    margin-top: 7px;
-    text-align: center;
-    font-size: small;
-}
-.titleScaduto{
-    margin-top: 5px;
-    text-align: center;
-    font-size: medium;
-    
-}
-.scaduto{
-    margin-top: 15px;
-    margin-left: 20px;
-    margin-right: 20px;
-    height: 30px;
-}
-.plus{
-    height: 45px;
-    width: 45px;
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-
-}
-
-ion-slides {
-    height: 250px;
-  }
-
-.titleSchede{
-    text-align: center;
-    margin-top: 80px;
-    font-size: medium;
-}
-.scheda{
+    padding: 1em;
     border-radius: 5px;
-    font-size: small;
-    width: 160px;
-    height: 120px;
+    margin: 1em;
+    background-color: #252525;
+}
+
+.second_info{
+    margin-top: 1em;
 }
 
 .schedaImg{
-    height: 45px;
-    width: 45px;
+    height: 100px;
+    margin: 1em 3em;
+}
+.scheda{
+    margin-bottom: 1.5em;
 }
 
-.schedaTitle{
+.swiper-pagination{
+    margin: 1em;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+#profile_picture{
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 1em;
+}
+
+.m-auto{
+    margin: auto;
+}
+
+.profile_nav{
+    padding:1em 0em;
+}
+
+.profile_icons{
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 1em;
+}
+
+.icon{
+    height: 30px;
+    width: 30px;
+    margin-left: 1em;
+}
+.username{
+    margin-top: 0.5em;
+    font-size: large;
+    margin-left: 1em;
+}
+#greetings{
     font-size: small;
 }
 
-.Plus{
-    height: 40px;
-    width: 40px;
+.profile_text{
+    margin-left: 2em;
 }
-.div{
-    display: flex;
-    justify-content: center;
+
+.Plus{
+    height: 100px;
+    width: 100px;
+    margin: 1em 3em;
 }
 
 .spinner{
@@ -163,5 +98,13 @@ ion-slides {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-   
+}
+
+
+ion-slides{
+    padding: 2em 0px;
+}
+
+.gym_info{
+    margin-top: 2em;
 }
