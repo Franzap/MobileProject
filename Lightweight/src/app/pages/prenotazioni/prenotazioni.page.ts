@@ -6,6 +6,8 @@ import { UserService } from 'src/app/services/user.service';
 import { Timestamp } from 'firebase/firestore';
 import { ToastController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
+import { PrenotazioniService } from 'src/app/services/prenotazioni.service';
+import { Prenotazione } from 'src/app/model/prenotazione.model';
 
 
 @Component({
@@ -35,7 +37,8 @@ export class PrenotazioniPage implements OnInit {
   constructor(private usercommunication: UserService,
     private toastController: ToastController,
     private router: Router,
-    private actionSheetCtrl: ActionSheetController) { }
+    private actionSheetCtrl: ActionSheetController,
+    private prenotazionicommunication:PrenotazioniService) { }
 
   ngOnInit() {
     this.initDateTime();
@@ -63,12 +66,18 @@ export class PrenotazioniPage implements OnInit {
       if (b == true) {
         this.presentToast("Risulta già una prenotazione per la data selezionata!", "danger");
       } else {
+       
+
+        
+
         this.user.prenotazioni.push(myTimestamp);
         await this.usercommunication.updateUser(this.user);
+        this.prenotazionicommunication.updatePrenotazione(this.user);
         this.activeP = [];
         this.pastP = [];
         this.presentToast("Prenotazione effettuata!", "success");
         this.setOpen(false);
+
       }
     }
   }
@@ -149,6 +158,9 @@ export class PrenotazioniPage implements OnInit {
     if (b == true) {
       this.user.prenotazioni.splice(this.user.prenotazioni.indexOf(temp), 1);
       await this.usercommunication.updateUser(this.user);
+      this.prenotazionicommunication.updatePrenotazione(this.user);
+
+     // this.prenotazionicommunication.removePrenotazione()
     }
   }
 

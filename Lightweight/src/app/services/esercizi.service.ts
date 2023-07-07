@@ -16,7 +16,7 @@ export class EserciziService {
     const firebaseApp = getApp();
     const db = getFirestore(firebaseApp);
     const exercisesRef = collection(db, `esercizi/`)
-    return collectionData(exercisesRef, { idField: 'id' }) as Observable<Esercizio[]>;
+    return collectionData(exercisesRef) as Observable<Esercizio[]>;
   }
 }
 
