@@ -92,8 +92,13 @@ ion-back-button{
   width: fill;
 }
 
-.left{
-  margin-right: auto;
+.trash{
+  
+    height: 30px;
+    width: 30px;
+    margin-top: -29.5px;
+    z-index: 3;
+    color: red;
 }
 .right{
   margin-left: auto;

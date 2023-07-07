@@ -46,7 +46,8 @@
        "settings" : {
         "title" : "Impostazioni", 
         "notifications": "Notifiche",
-        "notificationsDescription" : "Il consenso alle notifiche ci permette di tenerti costantamente aggiornato"
+        "notificationsDescription" : "Il consenso alle notifiche ci permette di tenerti costantamente aggiornato",
+        "change_language" : "Cambia lingua"
         
        },
 
@@ -69,6 +70,10 @@
         "edit" : "Modifica"
 
        }
+
+     
+
+      
 
     
     

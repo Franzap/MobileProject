@@ -5,12 +5,12 @@
   <ion-tab-bar slot ="bottom" color="dark" >
     <ion-tab-button *ngIf= "user.abbonamento.stato===true;else noAbb" tab="abbonamento"  class="b" >
        <ion-icon   name="albums" ></ion-icon>
-      <ion-label >Abbonamento</ion-label>
+      <ion-label [translate] = "'tabs.subscription'" ></ion-label>
     </ion-tab-button> 
     <ng-template #noAbb>
       <ion-tab-button (click)="NoAbb()" class="b">
       <ion-icon   name="albums"  ></ion-icon>
-      <ion-label  >Abbonamento</ion-label>
+      <ion-label [translate] = "'tabs.subscription'" ></ion-label>
     </ion-tab-button>
     </ng-template>
     
@@ -23,12 +23,12 @@
 
     <ion-tab-button  *ngIf= "user.abbonamento.stato===true;else noRes" tab="prenotazioni"  class="b">
       <ion-icon  name="calendar"></ion-icon>
-      <ion-label  >Prenotazioni</ion-label>
+      <ion-label [translate] = "'tabs.reservations'" >Prenotazioni</ion-label>
     </ion-tab-button>
     <ng-template #noRes>
       <ion-tab-button (click)="NoAbb()" class="b">
       <ion-icon   name="calendar"  ></ion-icon>
-      <ion-label  >Prenotazioni</ion-label>
+      <ion-label [translate] = "'tabs.reservations'" ></ion-label>
     </ion-tab-button>
     </ng-template>
 
